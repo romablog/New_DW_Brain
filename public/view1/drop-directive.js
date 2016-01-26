@@ -1,6 +1,6 @@
 var v1 = angular.module('brainApp.view1');
 
-v1.directive("dropDirective", ['SourceService', '$http', function($http, SourceService) {
+v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceService) {
     return {
         restrict : "AE",
         link: function (scope, elem) {
@@ -18,7 +18,7 @@ v1.directive("dropDirective", ['SourceService', '$http', function($http, SourceS
 
                 event.stopPropagation();
                 event.preventDefault();
-
+                var filesToSend = [];
                 var dt = event.dataTransfer || (event.originalEvent && event.originalEvent.dataTransfer);
                 var files = event.target.files || (dt && dt.files);
                 console.log('FILES', files, files[0], files.length);
@@ -37,6 +37,10 @@ v1.directive("dropDirective", ['SourceService', '$http', function($http, SourceS
                                 text: e.target.result
                             });
                             scope.$apply();
+                            filesToSend.push({
+                                fileName: newFile.name,
+                                fileText: e.target.result
+                            });
                         };
                     })(files[i]);
                     reader.readAsText(files[i]);
@@ -44,15 +48,8 @@ v1.directive("dropDirective", ['SourceService', '$http', function($http, SourceS
                     //console.log("Processed", files[i]);
                 }
 
-                var transform = function(file) {
-                    console.log(file.stats.name, file.text);
-                    return {
-                        fileName: file.stats.name,
-                        fileText: file.text
-                    };
-                };
 
-                $http.post('/files', files.map(transform));
+                $http.post('/files', filesToSend);
                 SourceService.file = files[files.length - 1];
             });
         }
