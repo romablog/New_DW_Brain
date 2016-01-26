@@ -38,10 +38,11 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                             });
                             scope.$apply();
                             console.log(newFile.name, e.target.result);
-                            filesToSend.push({
+                            $http.post('/files', {fileName: newFile.name, fileText: e.target.result});
+                           /* filesToSend.push({
                                 fileName: newFile.name,
                                 fileText: e.target.result
-                            });
+                            });*/
                         };
                     })(files[i]);
                     reader.readAsText(files[i]);
@@ -49,8 +50,8 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                     //console.log("Processed", files[i]);
                 }
 
-                console.log('sendinf', filesToSend.length);
-                $http.post('/files', {files: filesToSend});
+//                console.log('sendinf', filesToSend.length);
+
                 SourceService.file = files[files.length - 1];
             });
         }
