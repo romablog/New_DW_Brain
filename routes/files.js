@@ -3,13 +3,18 @@ exports.post = function(req, res, next) {
     var canvas = req.body.data;
 };
 
+exports.post = function(req, res, next){
+    File.addFile(res.locals.user.username,req.body.fileName, req.body.fileText)
+};
+
+
 exports.get = function(req, res, next) {
-    File.allUsersFile(res.locals.user.username,function(p_link){
-        if (p_link == "No Link"){
+    File.allUsersFile(res.locals.user.username,function(fileNames){
+        if (fileNames == "No Link"){
             res.status(404).send("Fuck off!")
         }
         else{
-            res.send(p_link);
+            res.send(fileNames);
         }
     });
 };
