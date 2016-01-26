@@ -1,6 +1,7 @@
 var File = require('../models/file').File;
-exports.post = function(req, res, next) {
-    var canvas = req.body.data;
+
+exports.post = function(req, res, next){
+    File.addFile(res.locals.user.username,req.body.fileName, req.body.fileText)
 };
 
 exports.get = function(req, res, next) {
