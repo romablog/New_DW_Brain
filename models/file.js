@@ -58,20 +58,14 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
     var File = this;
     async.waterfall([
         function(callback) {
-            console.log("hello i am here,", username, fileName, fileText);
             File.findOne({username: username, fileName: fileName}, callback);
         },
         function(file, callback) {
             if (file) {
-                console.log("file in system");
                 File.remove(file, callback);
             }
-            console.log("no file in system");
-
             var newFile = new File({username: username, fileName: fileName, fileText: fileText});
-            console.log(newFile);
             newFile.save(callback);
-            console.log("saved")
         }
     ], callback);
 };
