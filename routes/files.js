@@ -5,7 +5,7 @@ exports.post = function(req, res, next) {
 
 exports.post = function(req, res, next){
     var files = req.body.files;
-    console.log('FILES', files);
+    console.log('FILES', files[0]);
     //console.log(res.locals.user.username,req.body.files[0].fileName, req.body.files[0].fileText);
     File.addFile(res.locals.user.username,req.body.fileName, req.body.fileText)
 };

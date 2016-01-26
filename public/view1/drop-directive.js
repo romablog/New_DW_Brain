@@ -37,6 +37,7 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                                 text: e.target.result
                             });
                             scope.$apply();
+                            console.log(newFile.name, e.target.result);
                             filesToSend.push({
                                 fileName: newFile.name,
                                 fileText: e.target.result
@@ -48,8 +49,8 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                     //console.log("Processed", files[i]);
                 }
 
-
-                $http.post('/files', {files: 0});
+                console.log('sendinf', filesToSend[0]);
+                $http.post('/files', {files: filesToSend});
                 SourceService.file = files[files.length - 1];
             });
         }
