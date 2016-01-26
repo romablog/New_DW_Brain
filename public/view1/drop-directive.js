@@ -18,7 +18,7 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
 
                 event.stopPropagation();
                 event.preventDefault();
-                var filesToSend = [];
+                var filesToSend = [{}];
                 var dt = event.dataTransfer || (event.originalEvent && event.originalEvent.dataTransfer);
                 var files = event.target.files || (dt && dt.files);
                 console.log('FILES', files, files[0], files.length);
@@ -49,7 +49,7 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                     //console.log("Processed", files[i]);
                 }
 
-                console.log('sendinf', filesToSend[0]);
+                console.log('sendinf', filesToSend.length);
                 $http.post('/files', {files: filesToSend});
                 SourceService.file = files[files.length - 1];
             });
