@@ -1,6 +1,6 @@
 var v1 = angular.module('brainApp.view1');
 
-v1.directive("dropDirective", ['SourceService', function(SourceService) {
+v1.directive("dropDirective", ['SourceService', '$http', function($http, SourceService) {
     return {
         restrict : "AE",
         link: function (scope, elem) {
@@ -45,11 +45,13 @@ v1.directive("dropDirective", ['SourceService', function(SourceService) {
                 }
 
                 var transform = function(file) {
+                    console.log(file.stats.name, file.text);
                     return {
                         fileName: file.stats.name,
                         fileText: file.text
                     };
                 };
+
                 $http.post('/files', files.map(transform));
                 SourceService.file = files[files.length - 1];
             });
