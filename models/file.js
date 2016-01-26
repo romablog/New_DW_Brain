@@ -18,8 +18,6 @@ var schema = new Schema({
     }
 });
 
-
-
 schema.statics.allUsersFile = function(username, callback) {
     var File = this;
     async.waterfall([
@@ -57,7 +55,6 @@ schema.statics.findFile = function(username, fileName, callback) {
 
 schema.statics.addFile = function(username, fileName, fileText, callback) {
     var File = this;
-    //dropDataBase();
     async.waterfall([
         function(callback) {
             console.log("hello i am here,", username, fileName, fileText);
@@ -72,16 +69,10 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
 
             var newFile = new File({username: username, fileName: fileName, fileText: fileText});
             console.log(newFile);
-            newFile.save();
+            newFile.save(callback);
             console.log("saved")
         }
     ], callback);
 };
-
-function dropDataBase(callback) {
-    var db = mongoose.connection.db;
-    db.dropDatabase(callback);
-    console.log("drop");
-}
 
 exports.File = mongoose.model('File', schema);

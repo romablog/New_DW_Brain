@@ -4,7 +4,7 @@ exports.post = function(req, res, next) {
 };
 
 exports.get = function(req, res, next) {
-    File.addFile("my user","check save", "Just for work", function(){
+    File.addFile("my","check save3", "Just for work", function(){
         console.log("file added function work correctly");
         res.send("ok");
     });
