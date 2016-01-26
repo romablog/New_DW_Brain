@@ -15,18 +15,19 @@ v1.directive("sourcefilesDirective", ['SourceService', function(SourceService) {
         link: function(scope, elem) {
 
             scope.select = function(file) {
-                console.log(scope.getCurrentElement());
-                if(scope.getCurrentElement() != 0) {
-                    console.log('PREV');
-                    scope.getCurrentElement().find('img').css('border-width', '0px');
-                }
                 elem.find('img').css('border-style', 'solid');
                 elem.find('img').css('border-width', '10px');
                 elem.find('img').css('border-color', '#483D8B');
 
                 SourceService.file = file.file;
-                scope.setCurrentElement(elem);
 
+                console.log(scope.getCurrentElement());
+                if(scope.getCurrentElement() != 0) {
+                    console.log('PREV');
+                    scope.getCurrentElement().find('img').css('border-width', '0px');
+                }
+
+                scope.setCurrentElement(elem);
             };
 
         }
