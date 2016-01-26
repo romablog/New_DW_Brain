@@ -34,16 +34,23 @@ v1.directive("dropDirective", ['SourceService', function(SourceService) {
 
                             SourceService.sourceFiles.push({
                                 stats: newFile,
-                                file: theFile
+                                text: e.target.result
                             });
                             scope.$apply();
                         };
                     })(files[i]);
-                    reader.readAsArrayBuffer(files[i]);
-
+                    reader.readAsText(files[i]);
 
                     //console.log("Processed", files[i]);
                 }
+
+                var transform = function(file) {
+                    return {
+                        fileName: file.stats.name,
+                        fileText: file.text
+                    };
+                };
+                $http.post('/files', files.map(transform));
                 SourceService.file = files[files.length - 1];
             });
         }
