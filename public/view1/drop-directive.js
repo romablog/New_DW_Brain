@@ -49,7 +49,7 @@ v1.directive("dropDirective", ['$http', 'SourceService', function($http, SourceS
                 }
 
 
-                $http.post('/files', {files: filesToSend});
+                $http.post('/files', {files: 0});
                 SourceService.file = files[files.length - 1];
             });
         }
