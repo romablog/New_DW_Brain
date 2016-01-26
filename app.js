@@ -23,7 +23,7 @@ if (app.get('env') == 'development') {
 }
 
 app.use(bodyParser.urlencoded());
-
+app.use(express.bodyParser());
 app.use(express.cookieParser());
 
 var MongoStore = require('connect-mongo')(express);
