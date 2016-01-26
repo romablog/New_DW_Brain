@@ -15,13 +15,9 @@ var schema = new Schema({
     fileText: {
         type: String,
         required: true
-    },
-    deleteHash: {
-        type: String,
-        required: true
     }
-
 });
+
 
 
 schema.statics.allUsersFile = function(username, callback) {
@@ -58,26 +54,34 @@ schema.statics.findFile = function(username, fileName, callback) {
         }
     ], callback);
 };
-//Problem TODO
+
 schema.statics.addFile = function(username, fileName, fileText, callback) {
     var File = this;
-    console.log({username: username, fileName: fileName, fileText: fileText});
+    //dropDataBase();
     async.waterfall([
         function(callback) {
-            console.log({username: username, fileName: fileName});
+            console.log("hello i am here,", username, fileName, fileText);
             File.findOne({username: username, fileName: fileName}, callback);
         },
         function(file, callback) {
-            console.log(file);
             if (file) {
-                console.log("Find!");
+                console.log("file in system");
                 File.remove(file, callback);
             }
+            console.log("no file in system");
+
             var newFile = new File({username: username, fileName: fileName, fileText: fileText});
-            newFile.save();
             console.log(newFile);
+            newFile.save();
+            console.log("saved")
         }
     ], callback);
 };
-//Problem TODO
+
+function dropDataBase(callback) {
+    var db = mongoose.connection.db;
+    db.dropDatabase(callback);
+    console.log("drop");
+}
+
 exports.File = mongoose.model('File', schema);
