@@ -1,0 +1,71 @@
+<% layout('./layout/page') %>
+<% block('title', "BrainFack") %>
+<html ng-app="brainApp">
+<body onload="init();" style="margin-top: 50px">
+<script language="Javascript" src="/sourse/array.js"></script>
+<script src="angular/angular.js"></script>
+<script src="view1/view1.js"></script>
+<script src="/view1/brainApp.js"></script>
+<script src="/sourse/array.js"></script>
+<script src="/sourse/sourseCode.js"></script>
+<script src="/view1/source-service.js"></script>
+<script src="/view1/sourcelist.js"></script>
+
+<script src="view1/drop-directive.js"></script>
+
+<div id="page">
+
+    <form name="mainform" id="mainform">
+        <table cellspacing="20" cellpadding="0" border="0" align="center" style="margin-top: 50px">
+            <tr>
+                <td colspan="3" align="center">
+                    <input style="margin-right: 30px" type="button" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Save" onclick="run_debug();" disabled id="button_save" class="btn-default">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" valign="top" drop-directive>
+                    <p>Program:</p>
+                    <select onchange="this.form.source.value=this.options[this.selectedIndex].value; this.selectedIndex=0;" id="edit_progs">
+                        <option value="">Example programs...</option>
+                        <option value="++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.">Hello World</option>
+                        <option value=",[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>>+++++[<----->-]<<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>>+++++[<----->-]<<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]>.[-]<,]">Rot 13 (slow!)</option>
+                        <option value="+++++++++++>+>>>>++++++++++++++++++++++++++++++++++++++++++++>++++++++++++++++++++++++++++++++<<<<<<[>[>>>>>>+>+<<<<<<<-]>>>>>>>[<<<<<<<+>>>>>>>-]<[>++++++++++[-<-[>>+>+<<<-]>>>[<<<+>>>-]+<[>[-]<[-]]>[<<[>>>+<<<-]>>[-]]<<]>>>[>>+>+<<<-]>>>[<<<+>>>-]+<[>[-]<[-]]>[<<+>>[-]]<<<<<<<]>>>>>[++++++++++++++++++++++++++++++++++++++++++++++++.[-]]++++++++++<[->-<]>++++++++++++++++++++++++++++++++++++++++++++++++.[-]<<<<<<<<<<<<[>>>+>+<<<<-]>>>>[<<<<+>>>>-]<-[>>.>.<<<[-]]<<[>>+>+<<<-]>>>[<<<+>>>-]<<[<+>-]>[<+>-]<<<-]">Fibonacci Numbers</option>
+                        <option value="++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#-.--.+++++++++++.">Breakpoints Demo</option>
+                    </select><br><br>
+                    <p>Drop</p>
+                    <div ng-controller="SourceFileListController" style="width: 100px; max-height: 300px; overflow: auto;">
+                        <div ng-repeat="file in sourceFiles">
+                            <sourcefiles-directive></sourcefiles-directive>
+                        </div>
+                    </div>
+                </td>
+                <td style="min-width: 800px; padding-left: 30px; padding-right: 30px" valign="top" >
+                    <textarea cols="130" rows="10" id="edit_source" name="source" wrap="virtual" class="edit"></textarea><br>
+                    Source Viewer:<br>
+                    <pre class="viewer" id="progview"> </pre><br>
+                    Output:<br>
+                    <pre id="edit_output" name="output" class="editsmall"> </pre><br>
+                    Output Viewer:<br>
+                    <pre class="viewer" id="outputview"> </pre>
+                    <br>
+                </td>
+                <td rowspan="2" valign="top" style="background-color: #1B1E32">
+                    <p>Memory Viewer:<p>
+                    <p style="width: 200px" class="viewer" id="memview"> </p>
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>
+                    <b>Note:</b> The hash ("#") character marks a breakpoint.
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
