@@ -7,7 +7,7 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
         '<li>' +
             '<h6>{{file.stats.name}}</h6>' +
             '<span>' +
-                '<img ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<img height="50px" width="50px" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="select(file)" style="max-width: 220px; max-height: 100px;"/>' +
                 '<button ng-click="remove(file)" class="btn btn-default">X</button>' +
             '</span>' +
         '</li>',

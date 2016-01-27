@@ -46,9 +46,9 @@
                     </div>
                 </td>
                 <td style="min-width: 800px; padding-left: 30px; padding-right: 30px" valign="top" >
-                    <textarea cols="130" rows="10" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
+                    <textarea cols="130" rows="11" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
                     Source Viewer:<br>
-                    <pre class="viewer" id="progview"> </pre><br>
+                    <pre class="viewer" style="height: 80px" id="progview"> </pre><br>
                     Output:<br>
                     <pre id="edit_output" name="output" class="editsmall"> </pre><br>
                     Output Viewer:<br>
@@ -57,8 +57,8 @@
                 </td>
 
                 <td rowspan="2" valign="top">
-                    <div class="scroll" style="height:300px; overflow: auto" infinite-scroll="loadMore()"><p>Memory Viewer:<p>
-                        <p ng-repeat="line in lines" style="width: 200px;" class="viewer">{{line}}</p></div>
+                    <div style="width: 200px" class='container'><div class="scroll" infinite-scroll="loadMore()" infinite-scroll-container='".container"'><p>Memory Viewer:<p>
+                        <p ng-repeat="line in lines" style="width: 200px;" class="viewer">{{line}}</p></div></div>
                 </td>
             </tr>
             <tr valign="top">
