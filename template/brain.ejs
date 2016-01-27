@@ -22,14 +22,11 @@
                     <input style="margin-right: 30px" type="button" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Create Breakpoint" onclick="insertTextAtCursor();" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
-
                     <hr>
                 </td>
             </tr>
-
             <tr>
                 <td rowspan="2" valign="top" drop-directive>
                     <p>Program:</p>
@@ -59,7 +56,7 @@
                 </td>
                 <td rowspan="2" valign="top">
                     <div infinite-scroll="loadMore()"><p>Memory Viewer:<p>
-                        <p ng-repeat="line in lines" style="width: 200px" class="viewer">{{line}}</p></div>
+                        <p ng-repeat="line in lines" style="width: 200px; max-height:300px" class="viewer">{{line}}</p></div>
                 </td>
             </tr>
             <tr valign="top">
