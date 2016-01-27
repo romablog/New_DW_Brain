@@ -10,26 +10,7 @@
 <script src="/sourse/sourseCode.js"></script>
 <script src="/view1/source-service.js"></script>
 <script src="/view1/sourcelist.js"></script>
-<script type="text/javascript">
-    $(window).load(function(){
-        var el = $('<p>Test item</p>'),
-                container = $('.scroll');
-
-        function load(container) {
-            for(var i = 0;i<10;i++) {
-                $(container).append(el.clone());
-            }
-        }
-
-        load(container);
-        container.on('scroll', function () {
-            if (this.scrollHeight - this.clientHeight  <= this.scrollTop) {
-                load(container);
-            }
-        })
-    });
-</script>
-
+<script type="text/javascript" src="sourse/infinityScroll.js"></script>
 <script src="view1/drop-directive.js"></script>
 
 <div id="page">

@@ -467,11 +467,3 @@ function change_button_caption(name, caption){
     var elm = document.getElementById(name);
     elm.value = caption;
 }
-
-/*function sync_input(){
- if (document.getElementById('input_mode_1').checked){
- disable_text_box('edit_input');
- }else{
- enable_text_box('edit_input');
- }
- }*/
