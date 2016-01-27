@@ -24,7 +24,7 @@ function init(){
     document.getElementById('edit_source').value = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
     g_debugging = 1;
     init_memory();
-    update_memview();
+    //update_memview();
     debug_toggle(document.getElementById('mainform'));
 }
 
@@ -361,7 +361,7 @@ function debug_toggle(f){
         disable_button('button_step');
         disable_button('button_run_debug');
         set_viewdata('progview', ' ');
-        set_viewdata('memview', ' ');
+        //set_viewdata('memview', ' ');
         //set_viewdata('inputview', ' ');
         set_viewdata('outputview', ' ');
         //sync_input();
@@ -386,7 +386,7 @@ function start_debugger(){
     init_io();
     init_prog(document.getElementById('edit_source').value);
     init_input();
-    update_memview();
+    //update_memview();
     update_progview();
     //update_inputview();
     update_outputview();
@@ -396,7 +396,7 @@ function run_step(){
     var op = g_program[g_ip];
     execute_opcode(op);
     g_ip++;
-    update_memview();
+    //update_memview();
     update_progview();
     //update_inputview();
     update_outputview();
