@@ -15,9 +15,7 @@
 
 .scroll {
   overflow: scroll;
-  width: 150px;
   height: 200px;
-  margin: 100px auto 0;
   border: solid 1px #ccc;
 }
 
