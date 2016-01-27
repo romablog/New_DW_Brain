@@ -10,6 +10,25 @@
 <script src="/sourse/sourseCode.js"></script>
 <script src="/view1/source-service.js"></script>
 <script src="/view1/sourcelist.js"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        var el = $('<p>Test item</p>'),
+                container = $('.scroll');
+
+        function load(container) {
+            for(var i = 0;i<10;i++) {
+                $(container).append(el.clone());
+            }
+        }
+
+        load(container);
+        container.on('scroll', function () {
+            if (this.scrollHeight - this.clientHeight  <= this.scrollTop) {
+                load(container);
+            }
+        })
+    });
+</script>
 
 <script src="view1/drop-directive.js"></script>
 
@@ -23,7 +42,7 @@
                     <input style="margin-right: 30px" type="button" value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Save" onclick="run_debug();" disabled id="button_save" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Save" onclick="run_debug();" id="button_save" class="btn-default">
                     <hr>
                 </td>
             </tr>
@@ -56,13 +75,16 @@
                     <br>
                 </td>
                 <td rowspan="2" valign="top" style="background-color: #1B1E32">
-                    <p>Memory Viewer:<p>
-                    <p style="width: 200px" class="viewer" id="memview"> </p>
+                    <div class="scroll"><p>Memory Viewer:<p>
+                        <p style="width: 200px" class="viewer" id="memview"></p></div>
                 </td>
             </tr>
             <tr valign="top">
                 <td>
                     <b>Note:</b> The hash ("#") character marks a breakpoint.
+                    <div class="scroll">
+
+                    </div>
                 </td>
             </tr>
         </table>

@@ -13,6 +13,14 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
+.scroll {
+  overflow: scroll;
+  width: 150px;
+  height: 200px;
+  margin: 100px auto 0;
+  border: solid 1px #ccc;
+}
+
 li{
   float: left;
   list-style-type: none;
