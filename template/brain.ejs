@@ -60,9 +60,10 @@
                 <td rowspan="2" valign="top" style="max-height:300px">
                     <div  style="max-height:300px" infinite-scroll="loadMore()" class="scroll"><p>Memory Viewer:<p>
                         <span ng-repeat="line in lines" style="width: 200px;" class="viewer">
-                            {{line.hex}}
-                            <input type="number" ng-model="memory[$index]"><br>
-                            <h6 ng-value="tochar(memory[$index])"></h6>
+                            <input type="text" ng-value="'0x'+ $index.toString(16)">
+                            <input type="number" ng-model="memory[$index]">
+                            <input ng-value="tochar(memory[$index])">
+                            <br>
                         </span>
                     </div>
                 </td>

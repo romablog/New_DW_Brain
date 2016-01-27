@@ -25,6 +25,8 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
     $interval(function(){},100);
 
     $scope.tochar = function(int) {
+        if(int <32 || int > 127)
+            return '.';
         return String.fromCharCode(int);
-    }
+    };
 });
