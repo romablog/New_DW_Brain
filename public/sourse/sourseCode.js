@@ -471,3 +471,4 @@ function change_button_caption(name, caption){
     var elm = document.getElementById(name);
     elm.value = caption;
 }
+
