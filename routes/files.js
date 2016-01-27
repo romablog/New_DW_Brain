@@ -17,7 +17,7 @@ exports.get = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
-    File.deleteFile(res.locals.user.username, res.body.fileName, function(records){
+    File.deleteFile(res.locals.user.username, req.body.fileName, function(records){
         if (records == "No Link"){
             res.status(404).send("Fuck off!");
         }
