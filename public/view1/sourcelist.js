@@ -1,6 +1,6 @@
 var v1 = angular.module('brainApp.view1');
 
-v1.directive("sourcefilesDirective", ['SourceService', function(SourceService) {
+v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, SourceService) {
     return {
         restrict : "AE",
         template:
@@ -35,12 +35,12 @@ v1.directive("sourcefilesDirective", ['SourceService', function(SourceService) {
 
                 scope.setCurrentElement(elem);
                 //console.log($('#edit_source'));
-              //  $('#edit_source').html(SourceService.file.text);
-              //  $('#edit_source').text(SourceService.file.text);
                 $('#edit_source').val(SourceService.file.text);
               //  $('#edit_source').text('1');
                 console.log('after SELECT', SourceService.file);
                // $('#edit_source').value = SourceService.file.text;
+
+
             };
         }
     }
@@ -60,9 +60,9 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
     $scope.remove = function(file) {
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);
         if ($scope.sourceFiles.length == 0) {
-            //$scope.init_image();
             console.log('LIST IS EMPTY');
         }
+        $scope.delete(file);
     };
 
 

@@ -15,6 +15,14 @@ exports.get = function(req, res, next) {
         }
     });
 };
+
+exports.delete = function(req, res, next) {
+    File.deleteFile(res.locals.user.username, res.body.fileName, function(records){
+        if (records == "No Link"){
+            res.status(404).send("Fuck off!");
+        }
+    });
+};
 /*exports.get = function(req, res, next) {
     File.addFile("my","check save3", "Just for work", function(){
         console.log("file added function work correctly");

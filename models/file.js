@@ -67,4 +67,18 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
     ], callback);
 };
 
+schema.statics.deleteFile = function(username, fileName, callback) {
+    var File = this;
+    async.waterfall([
+        function(callback) {
+            File.findOne({username: username}, callback);
+        },
+        function(file, callback) {
+            if (file)
+                File.remove(file, callback);
+
+        }
+    ], callback);
+};
+
 exports.File = mongoose.model('File', schema);
