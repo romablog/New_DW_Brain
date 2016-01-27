@@ -19,7 +19,7 @@ var schema = new Schema({
     }
 });
 
-schema.statics.allUsersFile = function(username, callback) {
+schema.statics.allUsersFiles = function(username, callback) {
     var File = this;
     async.waterfall([
         function(callback) {
@@ -27,10 +27,7 @@ schema.statics.allUsersFile = function(username, callback) {
         },
         function(recordsByUser, callback) {
             if (recordsByUser) {
-                 var fileNames = recordsByUser.map(function(record){
-                     return record.fileName;
-                 });
-                callback(fileNames);
+                callback(recordsByUser);
             } else {
                 callback("No Text");
             }
@@ -38,21 +35,21 @@ schema.statics.allUsersFile = function(username, callback) {
     ], callback);
 };
 
-schema.statics.findFile = function(username, fileName, callback) {
-    var File = this;
-    async.waterfall([
-        function(callback) {
-            File.findOne({username: username, fileName: fileName}, callback);
-        },
-        function(file, callback) {
-            if (file) {
-                callback(file.fileText);
-            } else {
-                callback("No Text");
-            }
-        }
-    ], callback);
-};
+//schema.statics.findFile = function(username, fileName, callback) {
+//    var File = this;
+//    async.waterfall([
+//        function(callback) {
+//            File.findOne({username: username, fileName: fileName}, callback);
+//        },
+//        function(file, callback) {
+//            if (file) {
+//                callback(file.fileText);
+//            } else {
+//                callback("No Text");
+//            }
+//        }
+//    ], callback);
+//};
 
 schema.statics.addFile = function(username, fileName, fileText, callback) {
     var File = this;

@@ -6,12 +6,12 @@ exports.post = function(req, res, next){
 
 
 exports.get = function(req, res, next) {
-    File.allUsersFile(res.locals.user.username,function(fileNames){
-        if (fileNames == "No Link"){
+    File.allUsersFiles(res.locals.user.username,function(records){
+        if (records == "No Link"){
             res.status(404).send("Fuck off!");
         }
         else{
-            res.send(fileNames);
+            res.send({files: records});
         }
     });
 };
