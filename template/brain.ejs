@@ -22,7 +22,7 @@
                 <td colspan="3" align="center">
                     <input style="margin-right: 30px" type="button" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click="" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
                     <hr>
@@ -55,8 +55,8 @@
                     <pre class="viewer" id="outputview"> </pre>
                     <br>
                 </td>
-                <td rowspan="2" valign="top" style="max-height:300px">
-                    <div  style="max-height:300px" infinite-scroll="loadMore()"><p>Memory Viewer:<p>
+                <td rowspan="2" valign="top">
+                    <div class="scroll" style="height:300px; overflow: auto" infinite-scroll="loadMore()"><p>Memory Viewer:<p>
                         <p ng-repeat="line in lines" style="width: 200px;" class="viewer">{{line}}</p></div>
                 </td>
             </tr>
