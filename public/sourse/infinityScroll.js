@@ -23,10 +23,11 @@ function load() {
 */
 
 function takeCell(index) {
-    var cells = [];
     var wholeLabel = '0x' + pad_num(index, 7) + ' ' + pad_num(g_memory[index], 3);
-    cells.push(wholeLabel);
-    return cells;
+    return {
+        hex: '0x'+ parseInt(index.toString(16), 16),
+        data: g_memory[index]
+    };
 }
 
 function addFromMemory(){

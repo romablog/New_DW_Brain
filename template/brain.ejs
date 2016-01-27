@@ -1,15 +1,16 @@
 <% layout('./layout/page') %>
 <% block('title', "BrainFuck") %>
-<html ng-app="brainApp">
+<html ng-app="brainApp" xmlns="http://www.w3.org/1999/html">
 <body onload="init();" style="margin-top: 50px" ng-controller="View1Controller">
 <script language="Javascript" src="/sourse/array.js"></script>
 <script src="angular/angular.js"></script>
+<script src="/sourse/array.js"></script>
+<script src="/sourse/sourseCode.js"></script>
 <script type="text/javascript" src="sourse/ng-infinite-scroll.js"></script>
 <script src="sourse/infinityScroll.js"></script>
 <script src="view1/view1.js"></script>
 <script src="/view1/brainApp.js"></script>
-<script src="/sourse/array.js"></script>
-<script src="/sourse/sourseCode.js"></script>
+
 <script src="/view1/source-service.js"></script>
 <script src="/view1/sourcelist.js"></script>
 <script src="view1/drop-directive.js"></script>
@@ -20,11 +21,11 @@
         <table cellspacing="20" cellpadding="0" border="0" align="center" style="margin-top: 50px">
             <tr>
                 <td colspan="3" align="center">
-                    <input style="margin-right: 30px" type="button" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click="" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click=""  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
+                    <input style="margin-right: 30px" type="button" ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default">
                     <hr>
                 </td>
             </tr>
@@ -56,8 +57,13 @@
                     <br>
                 </td>
                 <td rowspan="2" valign="top" style="max-height:300px">
-                    <div  style="max-height:300px" infinite-scroll="loadMore()"><p>Memory Viewer:<p>
-                        <p ng-repeat="line in lines" style="width: 200px;" class="viewer">{{line}}</p></div>
+                    <div  style="max-height:300px" infinite-scroll="loadMore()" class="scroll"><p>Memory Viewer:<p>
+                        <span ng-repeat="line in lines" style="width: 200px;" class="viewer">
+                            {{line.hex}}
+                            <input type="number" ng-model="memory[$index]">
+                            <h6 ng-value="String.fromCharCode(97 + memory[$index])"></h6>
+                        </span>
+                    </div>
                 </td>
             </tr>
             <tr valign="top">

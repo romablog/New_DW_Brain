@@ -42,7 +42,7 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
             File.findOne({username: username, fileName: fileName}, callback);
         },
         function(file, callback) {
-            if (file) {
+                if (file) {
                 File.remove(file, callback);
             }
             var newFile = new File({username: username, fileName: fileName, fileText: fileText});

@@ -26,6 +26,8 @@ function init(){
     init_memory();
     //update_memview();
     debug_toggle(document.getElementById('mainform'));
+
+    load();
 }
 
 function init_memory(){
