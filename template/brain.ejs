@@ -55,9 +55,9 @@
                     <pre class="viewer" id="outputview"> </pre>
                     <br>
                 </td>
-                <td rowspan="2" valign="top">
-                    <div infinite-scroll="loadMore()"><p>Memory Viewer:<p>
-                        <p ng-repeat="line in lines" style="width: 200px; max-height:300px" class="viewer">{{line}}</p></div>
+                <td rowspan="2" valign="top" style="max-height:300px">
+                    <div  style="max-height:300px" infinite-scroll="loadMore()"><p>Memory Viewer:<p>
+                        <p ng-repeat="line in lines" style="width: 200px;" class="viewer">{{line}}</p></div>
                 </td>
             </tr>
             <tr valign="top">
