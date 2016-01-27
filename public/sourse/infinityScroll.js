@@ -3,7 +3,7 @@ var lines = [];
 
 function load() {
     console.log("hello");
-    for(var i = 0; i<10;i++) {
+    for(var i = 0; i<30;i++) {
         if (memoryCounter <= lines.length && memoryCounter < g_memory.length){
             console.log(memoryCounter);
             lines.push(takeCell(memoryCounter));
