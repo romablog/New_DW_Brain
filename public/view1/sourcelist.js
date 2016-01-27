@@ -34,7 +34,7 @@ v1.directive("sourcefilesDirective", ['SourceService', function(SourceService) {
     }
 }]);
 
-v1.controller("SourceFileListController", function($scope, SourceService) {
+v1.controller("SourceFileListController", function($http, $scope, SourceService) {
     $scope.currentElem = 0;
     $scope.getCurrentElement = function () {
         return $scope.currentElem;
@@ -42,7 +42,7 @@ v1.controller("SourceFileListController", function($scope, SourceService) {
     $scope.setCurrentElement = function(element) {
         $scope.currentElem = element;
     };
-    $scope.sourceFiles = SourceService.sourceFiles;
+
     $scope.remove = function(file) {
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);
         if ($scope.sourceFiles.length == 0) {
@@ -50,6 +50,16 @@ v1.controller("SourceFileListController", function($scope, SourceService) {
             console.log('LIST IS EMPTY');
         }
     };
+
+
+
+    $http.get('/files').then(function(response) {
+        SourceService.sourceFiles = response.data.files;
+       // console.log('RESP', response.data.files, response);
+        $scope.sourceFiles = SourceService.sourceFiles;
+    }, function() {
+        console.log("MEAN THINGS");
+    });
     /*
      $scope.select = function(file) {
      var currentFile =
