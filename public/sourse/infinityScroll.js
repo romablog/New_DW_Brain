@@ -2,8 +2,10 @@ var memoryCounter = 0;
 var lines = [];
 
 function load() {
+    console.log("hello");
     for(var i = 0; i<10;i++) {
-        if (memoryCounter < lines.length && memoryCounter < g_memory.length){
+        if (memoryCounter <= lines.length && memoryCounter < g_memory.length){
+            console.log(memoryCounter);
             lines.push(takeCell(memoryCounter));
             memoryCounter++;
         }
@@ -29,5 +31,5 @@ function takeCell(index) {
 
 function addFromMemory(){
     if (g_mp < lines.length)
-        lines[g_mp] = takeCell(g_mp)
+        lines[g_mp] = takeCell(g_mp);
 }
