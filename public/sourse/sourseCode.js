@@ -14,7 +14,7 @@ var g_quit_debug_run = 0;
 var g_debugging_running = 0;
 var g_prompt_for_input = 0;
 var g_running = 0;
-var g_linebreaker = "\n";
+var g_linebreaker = "<br>";
 
 function init(){
     if (navigator.userAgent.toLowerCase().indexOf("msie") != -1){
@@ -30,7 +30,9 @@ function init(){
 
 function init_memory(){
     for(var i=0; i<=g_max_mem; i++){
+        g_mp = i;
         g_memory[i] = 0;
+        addFromMemory();
     }
     g_mp = 0;
 }
@@ -124,11 +126,11 @@ function execute_opcode(op){
     switch(op){
         case '+':
             g_memory[g_mp]++;
-            if (g_memory[g_mp] > g_max_val) g_memory[g_mp] = 0;
+            if (g_memory[g_mp] > g_max_val) g_memory[g_mp] = 0; addFromMemory();
             break;
         case '-':
             g_memory[g_mp]--;
-            if (g_memory[g_mp] < 0) g_memory[g_mp] = g_max_val;
+            if (g_memory[g_mp] < 0) g_memory[g_mp] = g_max_val; addFromMemory();
             break;
         case '>':
             g_mp++;
@@ -148,7 +150,7 @@ function execute_opcode(op){
             put_output(String.fromCharCode(g_memory[g_mp]));
             break;
         case ',':
-            g_memory[g_mp] = get_input();
+            g_memory[g_mp] = get_input(); addFromMemory();
             break;
     }
 }

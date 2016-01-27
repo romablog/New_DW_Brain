@@ -1,17 +1,33 @@
-$(window).load(function(){
-    var el = $('<p>Test item</p>'),
-        container = $('.scroll');
+var memoryCounter = 0;
+var lines = [];
 
-    function load(container) {
-        for(var i = 0;i<10;i++) {
-            $(container).append(el.clone());
+function load() {
+    for(var i = 0; i<10;i++) {
+        if (memoryCounter < lines.length && memoryCounter < g_memory.length){
+            lines.push(takeCell(memoryCounter));
+            memoryCounter++;
         }
     }
+}
 
-    load(container);
-    container.on('scroll', function () {
-        if (this.scrollHeight - this.clientHeight  <= this.scrollTop) {
-            load(container);
-        }
-    })
-});
+/*function buildString(){
+    var newLines = [];
+    for (var y=0; y < memoryCounter+1; y++){
+        var cells = takeCell(y);
+        newLines.push(cells.join(' '));
+    }
+    lines = newLines;
+}
+*/
+
+function takeCell(index) {
+    var cells = [];
+    var wholeLabel = '0x' + pad_num(index, 7) + ' ' + pad_num(g_memory[index], 3);
+    cells.push(wholeLabel);
+    return cells;
+}
+
+function addFromMemory(){
+    if (g_mp < lines.length)
+        lines[g_mp] = takeCell(g_mp)
+}
