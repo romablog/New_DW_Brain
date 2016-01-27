@@ -23,4 +23,8 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
     $scope.loadMore = load;
     $scope.lines = lines;
     $interval(function(){},100);
+
+    $scope.tochar = function(int) {
+        return String.fromCharCode(int);
+    }
 });
