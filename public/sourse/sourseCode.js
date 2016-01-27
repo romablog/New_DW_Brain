@@ -14,7 +14,7 @@ var g_quit_debug_run = 0;
 var g_debugging_running = 0;
 var g_prompt_for_input = 0;
 var g_running = 0;
-var g_linebreaker = "<br>";
+var g_linebreaker = "\n";
 
 function init(){
     if (navigator.userAgent.toLowerCase().indexOf("msie") != -1){

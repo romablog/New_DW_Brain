@@ -19,10 +19,7 @@ v1.controller('View1Controller', function($http, $scope, SourceService) {
         $http.delete('/files', {fileName: file.stats.name, fileText: file.text});
     };
 
-    console.log("time1");
     console.log("Controller scope", SourceService.sourceFiles[0]);
     $scope.loadMore = load;
-    console.log($scope.loadMore);
     $scope.lines = lines;
-    console.log($scope.lines);
 });
