@@ -24,7 +24,8 @@
                     <input style="margin-right: 30px" type="button" value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Create Breakpoint" onclick="insertTextAtCursor();" class="btn-default">
                     <input style="margin-right: 30px" type="button" value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Save" onclick="run_debug();" id="button_save" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
+
                     <hr>
                 </td>
             </tr>
@@ -47,7 +48,7 @@
                     </div>
                 </td>
                 <td style="min-width: 800px; padding-left: 30px; padding-right: 30px" valign="top" >
-                    <textarea cols="130" rows="10" id="edit_source" name="source" wrap="virtual" class="edit"></textarea><br>
+                    <textarea cols="130" rows="10" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
                     Source Viewer:<br>
                     <pre class="viewer" id="progview"> </pre><br>
                     Output:<br>

@@ -15,21 +15,33 @@ v1.directive("sourcefilesDirective", ['SourceService', function(SourceService) {
         link: function(scope, elem) {
 
             scope.select = function(file) {
+                console.log('before SELECT', SourceService.file);
                 elem.find('img').css('border-style', 'solid');
                 elem.find('img').css('border-width', '10px');
                 elem.find('img').css('border-color', '#483D8B');
 
-                SourceService.file = file.file;
-
-                console.log(scope.getCurrentElement());
-                if(scope.getCurrentElement() != 0) {
+                SourceService.file = file;
+               // console.log(scope.file === file);
+               // console.log(scope.getCurrentElement());
+                if(scope.getCurrentElement() === elem) {
+                    console.log('PREV');
+                    //scope.getCurrentElement().find('img').css('border-width', '0px');
+                    return;
+                }
+                if(scope.getCurrentElement() !=0) {
                     console.log('PREV');
                     scope.getCurrentElement().find('img').css('border-width', '0px');
                 }
 
                 scope.setCurrentElement(elem);
+                //console.log($('#edit_source'));
+              //  $('#edit_source').html(SourceService.file.text);
+              //  $('#edit_source').text(SourceService.file.text);
+                $('#edit_source').val(SourceService.file.text);
+              //  $('#edit_source').text('1');
+                console.log('after SELECT', SourceService.file);
+               // $('#edit_source').value = SourceService.file.text;
             };
-
         }
     }
 }]);
@@ -43,6 +55,8 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
         $scope.currentElem = element;
     };
 
+
+
     $scope.remove = function(file) {
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);
         if ($scope.sourceFiles.length == 0) {
@@ -54,9 +68,13 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
 
 
     $http.get('/files').then(function(response) {
-        SourceService.sourceFiles = response.data.files;
-       // console.log('RESP', response.data.files, response);
+        SourceService.sourceFiles = response.data.files.map(function(file){
+            return {stats: {name: file.fileName}, text: file.fileText}
+        });
+       //
+        // console.log('RESP', response.data.files, response);
         $scope.sourceFiles = SourceService.sourceFiles;
+       // $scope.select($scope.sourceFiles[0]);
     }, function() {
         console.log("MEAN THINGS");
     });
