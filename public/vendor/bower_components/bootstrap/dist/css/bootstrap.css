@@ -1329,7 +1329,7 @@ h3,
 h4,
 .h4 {
   font-size: 19px;
-  font-family: "Tempus Sans ITC", "Geneva", "Arial", "Helvetica", "sans-serif";
+  font-family: "Geneva", "Arial", "Helvetica", "sans-serif";
 }
 h5,
 .h5 {
@@ -2564,7 +2564,7 @@ label {
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
-  font-family: "Tempus Sans ITC", "Geneva", "Arial", "Helvetica", "sans-serif";
+  font-family: "Geneva", "Arial", "Helvetica", "sans-serif";
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
