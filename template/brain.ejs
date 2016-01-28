@@ -18,7 +18,7 @@
 
 <div id="page">
     <form name="mainform" id="mainform">
-        <table cellspacing="20" cellpadding="0" border="0" align="center" style="width: inherit">
+        <table align="center" style="width: 98vw">
             <tr>
                 <td colspan="3" align="center">
                     <div class="container-fluid" style="border: solid lightgray 1px">
@@ -63,7 +63,7 @@
                 </td>
                 <td style="max-width: 850px; padding-left: 10px; padding-right: 10px" valign="top" >
                     <b>Edit:</b>
-                    <textarea cols="115" rows="20" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
+                    <textarea cols="115" style="width: 100%" rows="20" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
                     <b>Output:</b>
                     <pre class="viewer" id="outputview" style="height: 90px"> </pre>
                 </td>
@@ -72,9 +72,9 @@
                     <style>.inuse {background: rgba(93, 131, 165, 1) }</style>
                     <div infinite-scroll="loadMore()" class="scroll" style="min-height: 406px">
                         <div ng-repeat="line in lines" class="viewer">
-                           <p><input style="border: hidden; background: rgba(253, 253, 254, 1)" size="4" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
+                           <p><input style="border: hidden; background: white" size="4" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
                             <input style="max-width: 40px; border: hidden" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
-                            <input style="border: hidden; background: rgba(253, 253, 254, 1)" size="1" disabled="true" ng-value="tochar(memory[$index])"></p>
+                            <input style="border: hidden; background: white" size="1" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
                 </td>
