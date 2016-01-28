@@ -268,6 +268,7 @@ function debug_toggle(f){
         enable_button('button_run');
         change_button_caption('button_debug', 'Start Debugger');
         disable_button('button_step');
+        enable_button('button_debug');
         disable_button('button_run_debug');
         //set_viewdata('progview', ' ');
         set_viewdata('outputview', ' ');
@@ -355,11 +356,13 @@ function enable_text_box(name){
 function disable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = true;
+    elm.style.color = "black"
 }
 
 function enable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = false;
+    elm.style.color = "white"
 }
 
 function change_button_caption(name, caption){
