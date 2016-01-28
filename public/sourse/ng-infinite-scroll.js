@@ -28,12 +28,6 @@ mod.directive('infiniteScroll', [
         }
         handler = function() {
           var elementBottom, remaining, shouldScroll, windowBottom;
-          shouldScroll = false;
-          console.log("$window.height()", $window.height() );
-          console.log("$window.scrollTop()", $window.scrollTop() );
-          console.log("elem.offset().top", elem.offset().top );
-          console.log("elem.height()", elem.height() );
-
           windowBottom = $window.height() + $window.scrollTop() * 1.5 - elem.offset().top * index * 3;
           elementBottom = elem.offset().top + elem.height();
           remaining = elementBottom - windowBottom;
