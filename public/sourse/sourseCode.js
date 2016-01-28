@@ -171,7 +171,7 @@ function bf_interpret(prog){
 
     disable_text_box('edit_source');
     //disable_text_box('edit_input');
-    disable_text_box('edit_output');
+    //disable_text_box('edit_output');
     disable_text_box('edit_progs');
     //disable_button('input_mode_1');
     //disable_button('input_mode_2');
@@ -185,7 +185,7 @@ function bf_stop_run(){
     enable_text_box('edit_source');
     //enable_text_box('edit_input');
 
-    enable_text_box('edit_output');
+    //enable_text_box('edit_output');
     enable_text_box('edit_progs');
     //enable_button('input_mode_1');
     // enable_button('input_mode_2');
@@ -198,7 +198,7 @@ function bf_stop_run(){
 
 function bf_run_done(){
     bf_stop_run();
-    set_viewdata('edit_output',g_output);
+    set_viewdata('outputview',g_output);
     //document.getElementById('edit_output').value = "ahaaahahahahah";//;
 }
 
@@ -354,7 +354,7 @@ function debug_toggle(f){
         g_debugging = 0;
         enable_text_box('edit_source');
         //enable_text_box('edit_input');
-        enable_text_box('edit_output');
+        //enable_text_box('edit_output');
         enable_text_box('edit_progs');
         enable_button('button_run');
         //enable_button('input_mode_1');
@@ -371,7 +371,7 @@ function debug_toggle(f){
         g_debugging = 1;
         disable_text_box('edit_source');
         //disable_text_box('edit_input');
-        disable_text_box('edit_output');
+        //disable_text_box('edit_output');
         disable_text_box('edit_progs');
         disable_button('button_run');
         //disable_button('input_mode_1');
