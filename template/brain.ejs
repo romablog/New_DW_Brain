@@ -29,7 +29,7 @@
                                         <input style="border-right: solid 2px black; border-left: solid 2px black;" type="button"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
                                     </li>
                                     <li style="padding-right: 20px">
-                                        <input style="border-right: solid 2px black;" type="button" ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="border-right: solid 2px black;" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
                                         <input style="border-right: solid 2px black; border-left: solid 2px black;" type="button" ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
@@ -68,8 +68,8 @@
                     <div infinite-scroll="loadMore()" class="scroll" style="min-height: 423px">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input size="10" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input style="max-width: 60px" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="is_debug ? memory[$index] : 0">
-                            <input style="margin-right: 10px" size="2" disabled="true" ng-value="is_debug ? tochar(memory[$index]) : 0"></p>
+                            <input style="max-width: 60px" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
+                            <input style="margin-right: 10px" size="2" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
                 </td>

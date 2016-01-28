@@ -22,7 +22,7 @@ function init(){
         g_linebreaker = "\r";
     }
 
-    document.getElementById('edit_source').value = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    document.getElementById('edit_source').value = "";
     g_debugging = 1;
     init_memory();
     debug_toggle(document.getElementById('mainform'));
