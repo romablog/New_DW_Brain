@@ -167,6 +167,7 @@ function bf_interpret(prog){
     init_memory();
     init_io();
     init_input();
+    set_viewdata('outputview', ' ');
     document.getElementById('edit_source').disabled = true;
     disable_button('button_debug');
     change_button_caption('button_run', 'Stop');
