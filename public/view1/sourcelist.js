@@ -8,6 +8,7 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
             '<h6>{{file.stats.name}}</h6>' +
             '<span>' +
                 '<img height="50px" width="50px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<button ng-click="rename(file);" width="20"class="btn btn-default">Имя</button>' +
                 '<button ng-click="remove(file);" width="20"class="btn btn-default">X</button>' +
             '</span>' +
         '</li>',
@@ -16,7 +17,6 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
 
             scope.select = function(file) {
                 console.log('before SELECT', SourceService.file);
-
                 SourceService.file = file;
 
                 $('#edit_source').val(SourceService.file.text);
@@ -46,7 +46,15 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
         }
         $scope.delete(file);
     };
-
+    $scope.rename = function(file) {
+        console.log('RENAME');
+        var newName = window.prompt("Введите новое имя", file.stats.name);
+        console.log(newName);
+        $http.post('/rename', {new: newName, old: file.stats.name}).then(function() {
+            console.log('RENAME PROM');
+            file.stats.name = newName;
+        });
+    };
 
 
     $http.get('/files').then(function(response) {

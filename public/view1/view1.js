@@ -22,7 +22,7 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
             stats: {
                 name: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
             },
-            text : $('#edit_source').val()
+            text : ''
         };
         SourceService.sourceFiles.push(newFile);
         SourceService.file = newFile;
