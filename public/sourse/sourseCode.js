@@ -86,7 +86,11 @@ function init_input(){
 function get_input(){
     if (g_prompt_for_input){
         var data = window.prompt("Enter an input character (use #xxx to specify a decimal code, !xxx for an octal code, or $xxx for a hex code):", "#0");
-        if ((data == null) || (!data)) return 0;
+        if ((data == null) || (!data)) return 0; //return 'nodata'
+        if (data.charAt(0) == "'" || data.charAt(0) =='"')
+            return data.charAt(1);
+        else return eval(data);
+        /*
         if (data.charAt(0) == '#'){
             return parseInt(data.substr(1), 10);
         }
@@ -96,6 +100,7 @@ function get_input(){
         if (data.charAt(0) == '$'){
             return eval('0x'+data.substr(1));
         }
+        */
         return data.charCodeAt(0);
     }else{
         var result = (g_dp >= g_input.length)?0:g_input[g_dp].charCodeAt(0);

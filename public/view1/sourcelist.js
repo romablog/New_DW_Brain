@@ -5,10 +5,10 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
         restrict : "AE",
         template:
         '<li>' + '<style> .selected { opacity : 0.7 ; }</style>' +
-            '<button ng-click="rename(file);"  class="btn btn-default btn-xs" style="margin: 10px 5px 0px 10px">{{file.stats.name}}</button><br>'+
+            '<button  ng-dblclick="rename(file)" ng-click="select(file);" ng-disabled="is_debug" class="btn btn-default btn-xs" style="margin: 10px 5px 0px 10px">{{file.stats.name}}</button><br>'+
             '<span>' +
-                '<img  style="margin: 0px 0px 10px 10px" height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
-                '<button ng-click="remove(file);"  class="btn btn-default btn-xs btn-danger">X</button>' +
+            //    '<img  style="margin: 0px 0px 10px 10px" height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<button ng-click="rename(file);"  ng-disabled="is_debug" class="btn btn-default btn-xs btn-danger">ren</button>' +
             '</span>' +
         '</li>',
 
@@ -48,11 +48,13 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
     $scope.rename = function(file) {
         console.log('RENAME');
         var newName = window.prompt("Введите новое имя", file.stats.name);
-        console.log(newName);
-        console.log('RENAME PROM');
+        if (newName) {
+            console.log(newName);
+            console.log('RENAME PROM');
 
-        $http.post('/rename', {new: newName, old: file.stats.name});
-        file.stats.name = newName;
+            $http.post('/rename', {new: newName, old: file.stats.name});
+            file.stats.name = newName;
+        }
     };
 
 

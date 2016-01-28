@@ -35,7 +35,7 @@
                                         <input style="border-right: solid 2px black; border-left: solid 2px black;" type="button" ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
-                                        <input style="border-right: solid 2px black" type="button" ng-click="is_debug = true; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="border-right: solid 2px black" type="button" ng-click="is_debug=!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
                                         <input style="border-right: solid 2px black" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
@@ -52,7 +52,7 @@
             <tr>
                 <td rowspan="2" valign="top" drop-directive >
                     <p>Files:</p>
-                    <div ng-controller="SourceFileListController" style="width: 150px; max-height: 300px; min-height: 396px; overflow: auto; border: rgba(93, 131, 165, 1) 2px solid">
+                    <div ng-controller="SourceFileListController"  style="width: 150px; max-height: 300px; min-height: 396px; overflow: auto; border: rgba(93, 131, 165, 1) 2px solid">
                         <div ng-repeat="file in sourceFiles">
                             <sourcefiles-directive></sourcefiles-directive>
                         </div>
