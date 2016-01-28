@@ -21,12 +21,10 @@ function init(){
         g_linebreaker = "\r";
     }
 
-   // document.getElementById('edit_source').value = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    document.getElementById('edit_source').value = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
     g_debugging = 1;
     init_memory();
-    //update_memview();
     debug_toggle(document.getElementById('mainform'));
-
     load();
 }
 
@@ -48,8 +46,6 @@ function init_prog(code){
     g_program.length = 0;
     for(var i=0; i<code.length; i++){
         var op = code.charAt(i)
-        // check it's not a carriage return or anything that will
-        //  break the program viewer too badly :)
         if (is_valid_op(op)){
             g_program[g_program.length] = op;
         }
@@ -169,12 +165,7 @@ function bf_interpret(prog){
     init_io();
     init_input();
 
-    disable_text_box('edit_source');
-    //disable_text_box('edit_input');
-    //disable_text_box('edit_output');
-    disable_text_box('edit_progs');
-    //disable_button('input_mode_1');
-    //disable_button('input_mode_2');
+    document.getElementById('edit_source').disabled = true;
     disable_button('button_debug');
     change_button_caption('button_run', 'Stop');
 
@@ -183,32 +174,21 @@ function bf_interpret(prog){
 
 function bf_stop_run(){
     enable_text_box('edit_source');
-    //enable_text_box('edit_input');
-
-    //enable_text_box('edit_output');
     enable_text_box('edit_progs');
-    //enable_button('input_mode_1');
-    // enable_button('input_mode_2');
     enable_button('button_debug');
     change_button_caption('button_run', 'Run');
-    //sync_input();
-
     g_running = 0;
 }
 
 function bf_run_done(){
     bf_stop_run();
     set_viewdata('outputview',g_output);
-    //document.getElementById('edit_output').value = "ahaaahahahahah";//;
 }
 
 function bf_run_step(){
-    // execute instrcution under ip
     var op = g_program[g_ip];
 
     execute_opcode(op);
-
-    // increment ip
     g_ip++;
 
     if (g_ip >= g_program.length){
@@ -216,79 +196,7 @@ function bf_run_step(){
         return;
     }
 
-    window.setTimeout('bf_run_step();', 100);
-}
-
-function update_memview(){
-
-    var lines = [];
-
-    for (var y=0; y<16; y++){
-
-        var cells = [];
-
-        for (var x=0; x<16; x++){
-
-            var idx = x + (y * 16);
-            var label = pad_num(g_memory[idx], 3);
-
-            if (idx == g_mp){
-                cells.push('<span style="background-color: lightgreen">'+label+'</span>');
-            }else{
-                cells.push(label);
-            }
-        }
-
-        lines.push(cells.join(' '));
-    }
-
-    var html = lines.join(g_linebreaker);
-
-    var p_node = document.getElementById('memview');
-    p_node.innerHTML = html;
-    return;
-
-    var mem_slots = Math.floor(g_viewer_width / 4);
-    var pre_slots = Math.floor(mem_slots / 2);
-    var low_slot = g_mp - pre_slots;
-    if (low_slot < 0) low_slot += g_max_mem;
-
-    var line_1 = '';
-    for(var i=0; i<mem_slots; i++){
-        var slot = low_slot + i;
-        if (slot >= g_max_mem) slot -= g_max_mem;
-        var label = pad_num(g_memory[slot], 3);
-        if (i==0){
-            line_1 += '<u>'+label+'</u> ';
-        }else{
-            line_1 += label + ' ';
-        }
-    }
-
-    var line_2 = '';
-    for(var i=0; i<pre_slots; i++){
-        line_2 += '    ';
-    }
-    line_2 += '^';
-
-    var line_3 = '';
-    for(var i=0; i<pre_slots; i++){
-        line_3 += '    ';
-    }
-    line_3 += 'mp='+g_mp;
-
-    var line_4 = '';
-    for(var i=0; i<mem_slots; i++){
-        var slot = low_slot + i;
-        if (slot >= g_max_mem) slot -= g_max_mem;
-        var label = pad_num(slot, 3);
-        line_4 += label + ' ';
-    }
-
-    //set_viewdata('memview', line_1 + g_linebreaker + line_2 + g_linebreaker + line_3 + g_linebreaker + line_4);
-
-    var p_node = document.getElementById('memview');
-    p_node.innerHTML = line_1 + g_linebreaker + line_2 + g_linebreaker + line_3 + g_linebreaker + line_4;
+    window.setTimeout('bf_run_step();', 2);
 }
 
 function pad_num(a, b){
@@ -352,30 +260,19 @@ function debug_done(){
 function debug_toggle(f){
     if (g_debugging == 1){
         g_debugging = 0;
-        enable_text_box('edit_source');
-        //enable_text_box('edit_input');
-        //enable_text_box('edit_output');
-        enable_text_box('edit_progs');
+        document.getElementById('edit_source').disabled = false;
+        //enable_text_box('edit_progs');
         enable_button('button_run');
-        //enable_button('input_mode_1');
-        //enable_button('input_mode_2');
         change_button_caption('button_debug', 'Start Debugger');
         disable_button('button_step');
         disable_button('button_run_debug');
-        set_viewdata('progview', ' ');
-        //set_viewdata('memview', ' ');
-        //set_viewdata('inputview', ' ');
+        //set_viewdata('progview', ' ');
         set_viewdata('outputview', ' ');
-        //sync_input();
     }else{
         g_debugging = 1;
-        disable_text_box('edit_source');
-        //disable_text_box('edit_input');
-        //disable_text_box('edit_output');
-        disable_text_box('edit_progs');
+        document.getElementById('edit_source').disabled = true;
+        //disable_text_box('edit_progs');
         disable_button('button_run');
-        //disable_button('input_mode_1');
-        //disable_button('input_mode_2');
         change_button_caption('button_debug', 'Quit Debugger');
         enable_button('button_step');
         enable_button('button_run_debug');
@@ -388,9 +285,7 @@ function start_debugger(){
     init_io();
     init_prog(document.getElementById('edit_source').value);
     init_input();
-    //update_memview();
-    update_progview();
-    //update_inputview();
+    //update_progview();
     update_outputview();
 }
 
@@ -398,14 +293,11 @@ function run_step(){
     var op = g_program[g_ip];
     execute_opcode(op);
     g_ip++;
-    //update_memview();
-    update_progview();
-    //update_inputview();
+    //update_progview();
     update_outputview();
 
     if (g_ip >= g_program.length){
         debug_done();
-        //alert("done!");
     }
 }
 
