@@ -15,6 +15,8 @@ mod.directive('infiniteScroll', [
             return scrollDistance = parseInt(value, 10);
           });
         }
+
+
         scrollEnabled = true;
         checkWhenEnabled = false;
         if (attrs.infiniteScrollDisabled != null) {
