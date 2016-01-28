@@ -22,5 +22,7 @@ module.exports = function(app) {
   app.get('/files', require('./files').get);
   app.delete('/files', require('./files').delete);
 
+  app.post('/rename', require('./rename').post);
+
   app.get('/brain', checkAuth,require('./brain').get);
 };
