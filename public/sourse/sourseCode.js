@@ -164,7 +164,6 @@ function bf_interpret(prog){
     init_memory();
     init_io();
     init_input();
-
     document.getElementById('edit_source').disabled = true;
     disable_button('button_debug');
     change_button_caption('button_run', 'Stop');
@@ -249,6 +248,7 @@ function set_viewdata(view, data){
 }
 
 function run(f){
+    console.log(f.source.value);
     bf_interpret(f.source.value);
 }
 
