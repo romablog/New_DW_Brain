@@ -21,27 +21,27 @@
         <table cellspacing="20" cellpadding="0" border="0" align="center" style="margin-top: 50px">
             <tr>
                 <td colspan="3" align="center">
-                    <nav class="navbar navbar-default" style="min-width: 800px; max-height: 10px; border: solid 2px black">
+                    <nav class="navbar navbar-default" style="min-width: 800px; max-height: 15px;">
                         <div class="container-fluid">
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
                                     <li>
-                                        <input style="border-right: solid 2px black; border-left: solid 2px black;" type="button"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)"  type="image" src="sourse/file_add%20(1).png" width="60px"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
                                     </li>
                                     <li style="padding-right: 20px">
-                                        <input style="border-right: solid 2px black;" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)"  type="image" src="sourse/diskette.png" width="60px"  ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
-                                        <input style="border-right: solid 2px black; border-left: solid 2px black;" type="button" ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/player_play%20(1).png" width="60px" ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
-                                        <input style="border-right: solid 2px black" type="button" ng-click="is_debug=!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/player_rewind.png" width="60px" ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
-                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/direction_right.png" width="60px" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                     <li>
-                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/Arrow%20(1).png" width="60px" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                                     </li>
                                 </ul>
                             </div>
