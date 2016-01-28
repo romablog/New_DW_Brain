@@ -176,6 +176,7 @@ function bf_interpret(prog){
     document.getElementById('edit_source').disabled = true;
     disable_button('button_debug');
     change_button_caption('button_run', 'Stop');
+    document.getElementById('button_run').src = "sourse/player_stop.png";
 
     bf_run_step();
 }
@@ -185,6 +186,7 @@ function bf_stop_run(){
     //enable_text_box('edit_progs');
     enable_button('button_debug');
     change_button_caption('button_run', 'Run');
+    document.getElementById('button_run').src = "sourse/player_play%20(1).png";
     g_running = 0;
 }
 
@@ -269,7 +271,8 @@ function debug_toggle(f){
         document.getElementById('edit_source').disabled = false;
         //enable_text_box('edit_progs');
         enable_button('button_run');
-        change_button_caption('button_debug', 'Start Debugger');
+        //change_button_caption('button_debug', 'Start Debugger');
+        document.getElementById('button_debug').src = "sourse/player_rewind.png";
         disable_button('button_step');
         enable_button('button_debug');
         disable_button('button_run_debug');
@@ -280,7 +283,8 @@ function debug_toggle(f){
         document.getElementById('edit_source').disabled = true;
         //disable_text_box('edit_progs');
         disable_button('button_run');
-        change_button_caption('button_debug', 'Quit Debugger');
+        //change_button_caption('button_debug', 'Quit Debugger');
+        document.getElementById('button_debug').src = "sourse/player_stop.png";
         enable_button('button_step');
         enable_button('button_run_debug');
         set_viewdata('outputview', ' ');
@@ -363,13 +367,13 @@ function enable_text_box(name){
 function disable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = true;
-    elm.style.color = "black"
+    elm.style.opacity = 0.2;
 }
 
 function enable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = false;
-    elm.style.color = "white"
+    elm.style.opacity = 1;
 }
 
 function change_button_caption(name, caption){
