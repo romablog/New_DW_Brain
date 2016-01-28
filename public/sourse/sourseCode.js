@@ -238,11 +238,7 @@ function update_progview(){
 }
 
 function update_outputview(){
-    var line_1 = g_output;
-    var line_2 = '';
-    for (var i=0; i<g_output.length; i++) line_2 += ' ';
-    line_2 += '^';
-    set_viewdata('outputview', line_1 + g_linebreaker + line_2);
+    set_viewdata('outputview', g_output);
 }
 
 function set_viewdata(view, data){
@@ -256,9 +252,10 @@ function run(f){
     bf_interpret(f.source.value);
 }
 
-function debug_done(){
+function debug_done() {
     disable_button('button_step');
     disable_button('button_run_debug');
+    debug_toggle(document.getElementById('mainform'));
 }
 
 function debug_toggle(f){
@@ -272,7 +269,7 @@ function debug_toggle(f){
         enable_button('button_debug');
         disable_button('button_run_debug');
         //set_viewdata('progview', ' ');
-        set_viewdata('outputview', ' ');
+        //set_viewdata('outputview', ' ');
     }else{
         g_debugging = 1;
         document.getElementById('edit_source').disabled = true;
@@ -281,6 +278,7 @@ function debug_toggle(f){
         change_button_caption('button_debug', 'Quit Debugger');
         enable_button('button_step');
         enable_button('button_run_debug');
+        set_viewdata('outputview', ' ');
         start_debugger();
     }
 }
@@ -302,6 +300,7 @@ function run_step(){
     update_outputview();
 
     if (g_ip >= g_program.length){
+        g_debugging = 1;
         debug_done();
     }
 }
@@ -335,6 +334,7 @@ function run_debug_step(){
     if ((g_program[g_ip] == '#') || g_quit_debug_run || (g_ip >= g_program.length)){
         stop_debug_run();
         if (g_ip >= g_program.length){
+            g_debugging = 1;
             debug_done();
         }
         return;
