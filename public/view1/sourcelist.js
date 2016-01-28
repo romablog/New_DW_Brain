@@ -4,11 +4,11 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
     return {
         restrict : "AE",
         template:
-        '<li>' +
+        '<li>' + '<style> .selected { border: solid 6px #483D8B; }</style>' +
             '<h6>{{file.stats.name}}</h6>' +
             '<span>' +
-                '<img height="50px" width="50px" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="select(file)" style="max-width: 220px; max-height: 100px;"/>' +
-                '<button ng-click="remove(file)" class="btn btn-default">X</button>' +
+                '<img height="50px" width="50px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<button ng-click="remove(file);" width="20"class="btn btn-default">X</button>' +
             '</span>' +
         '</li>',
 
@@ -16,46 +16,28 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
 
             scope.select = function(file) {
                 console.log('before SELECT', SourceService.file);
-                elem.find('img').css('border-style', 'solid');
-                elem.find('img').css('border-width', '10px');
-                elem.find('img').css('border-color', '#483D8B');
 
                 SourceService.file = file;
-               // console.log(scope.file === file);
-               // console.log(scope.getCurrentElement());
-                if(scope.getCurrentElement() === elem) {
-                    console.log('PREV');
-                    //scope.getCurrentElement().find('img').css('border-width', '0px');
-                    return;
-                }
-                if(scope.getCurrentElement() !=0) {
-                    console.log('PREV');
-                    scope.getCurrentElement().find('img').css('border-width', '0px');
-                }
 
-                scope.setCurrentElement(elem);
-                //console.log($('#edit_source'));
                 $('#edit_source').val(SourceService.file.text);
               //  $('#edit_source').text('1');
                 console.log('after SELECT', SourceService.file);
                // $('#edit_source').value = SourceService.file.text;
-
-
             };
+
         }
     }
 }]);
 
 v1.controller("SourceFileListController", function($http, $scope, SourceService) {
-    $scope.currentElem = 0;
-    $scope.getCurrentElement = function () {
-        return $scope.currentElem;
+    $scope.selected = Number.MAX_VALUE;
+    $scope.selectFile = function(selected) {
+        console.log(selected);
+        $scope.selected = selected;
     };
-    $scope.setCurrentElement = function(element) {
-        $scope.currentElem = element;
+    $scope.isSelected = function(selected) {
+        return $scope.selected == selected;
     };
-
-
 
     $scope.remove = function(file) {
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);

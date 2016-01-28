@@ -15,7 +15,7 @@ var schema = new Schema({
     },
     fileText: {
         type: String,
-        required: true
+   //     required: true
     }
 });
 

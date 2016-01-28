@@ -216,7 +216,7 @@ function bf_run_step(){
         return;
     }
 
-    window.setTimeout('bf_run_step();', 0);
+    window.setTimeout('bf_run_step();', 100);
 }
 
 function update_memview(){

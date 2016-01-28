@@ -26,7 +26,8 @@
                     <input style="margin-right: 30px" type="button" ng-click=""  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
                     <input style="margin-right: 30px" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
                     <input style="margin-right: 30px" type="button" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default">
+                    <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
+                    <input style="margin-right: 30px" type="button"  value="New" ng-click="new()" id="button_save" class="btn-default">
                     <hr>
                 </td>
             </tr>
@@ -58,10 +59,12 @@
                     <br>
                 </td>
                 <td rowspan="2" valign="top" style="max-height:300px">
+                    <style>.inuse {border: solid red 5px}</style>
                     <div  style="max-height:300px" infinite-scroll="loadMore()" class="scroll">
+                        <input size="10" disabled="true" type="text" ng-value="getInstruction()">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input size="10" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input style="max-width: 50px" type="number" ng-model="memory[$index]">
+                            <input style="max-width: 20px" ng-class="{inuse: getMemory() == $index}" type="text" ng-model="memory[$index]">
                             <input style="margin-right: 10px" size="2" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
