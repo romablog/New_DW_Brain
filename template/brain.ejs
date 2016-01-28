@@ -18,58 +18,63 @@
 
 <div id="page">
     <form name="mainform" id="mainform">
-        <table cellspacing="20" cellpadding="0" border="0" align="center" style="margin-top: 50px">
+        <table cellspacing="20" cellpadding="0" border="0" align="center" style="width: inherit">
             <tr>
                 <td colspan="3" align="center">
-                    <nav class="navbar navbar-default" style="min-width: 800px; max-height: 15px;">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li>
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)"  type="image" src="sourse/file_add%20(1).png" width="60px"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
-                                    </li>
-                                    <li style="padding-right: 20px">
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)"  type="image" src="sourse/diskette.png" width="60px" value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
-                                    </li>
-                                    <li>
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/player_play%20(1).png" width="60px" ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
-                                    </li>
-                                    <li>
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/player_rewind.png" width="60px" ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
-                                    </li>
-                                    <li>
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/direction_right.png" width="60px" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
-                                    </li>
-                                    <li>
-                                        <input style="margin-right: 10px; background: rgba(247, 247, 247, 1)" type="image" src="sourse/Arrow%20(1).png" width="60px" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
+                    <div class="container-fluid" style="border: solid lightgray 1px">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <input style="margin-right: 5px; margin-left: 90px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_play%20(1).png" height="35px" width="46px"  ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                            </li>
+                            <li>
+                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_rewind.png" height="35px" width="46px"  ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                            </li>
+                            <li>
+                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/direction_right.png" height="35px" width="46px"  ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                            </li>
+                            <li>
+                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/Arrow%20(1).png" height="35px" width="46px"  ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td rowspan="2" valign="top" drop-directive >
-                    <p>Files:</p>
-                    <div ng-controller="SourceFileListController"  style="width: 150px; max-height: 300px; min-height: 396px; overflow: auto; border: rgba(93, 131, 165, 1) 2px solid">
+                    <b>Files:</b>
+                    <div ng-controller="SourceFileListController"  style="width: 105px; height: 406px; overflow: auto; border: lightgray 1px solid">
                         <div ng-repeat="file in sourceFiles">
                             <sourcefiles-directive></sourcefiles-directive>
                         </div>
                     </div>
+                    <div style="width: 105px;" >
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <input style=" background: rgba(253, 253, 254, 1); float: left"  type="image" src="sourse/file_add%20(1).png" height="25px" width="35px"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
+                            </li>
+                            <li>
+                                <input style=" background: rgba(253, 253, 254, 1); float: left"  type="image" src="sourse/file_delete.png" height="25px" width="35px"  value="Del" ng-click="new()" id="button_save" class="btn-default btn-sm">
+                            </li>
+                            <li>
+                                <input style=" background: rgba(253, 253, 254, 1); float: left"  type="image" src="sourse/diskette.png" height="25px" width="35px"   ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
-                <td style="min-width: 780px; padding-left: 30px; padding-right: 30px" valign="top" >
-                    <textarea cols="117" rows="17" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br><br>
-                    Output:<br>
+                <td style="max-width: 850px; padding-left: 10px; padding-right: 10px" valign="top" >
+                    <b>Edit:</b>
+                    <textarea cols="115" rows="20" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
+                    <b>Output:</b>
                     <pre class="viewer" id="outputview" style="height: 90px"> </pre>
                 </td>
                 <td rowspan="2" valign="top">
+                    <b>Memory:</b>
                     <style>.inuse {background: rgba(93, 131, 165, 1) }</style>
-                    <div infinite-scroll="loadMore()" class="scroll" style="min-height: 423px">
+                    <div infinite-scroll="loadMore()" class="scroll" style="min-height: 406px">
                         <div ng-repeat="line in lines" class="viewer">
-                           <p><input size="10" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input style="max-width: 60px" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
-                            <input style="margin-right: 10px" size="2" disabled="true" ng-value="tochar(memory[$index])"></p>
+                           <p><input style="border: hidden; background: rgba(253, 253, 254, 1)" size="4" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
+                            <input style="max-width: 40px; border: hidden" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
+                            <input style="border: hidden; background: rgba(253, 253, 254, 1)" size="1" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
                 </td>
