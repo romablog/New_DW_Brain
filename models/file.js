@@ -64,4 +64,21 @@ schema.statics.deleteFile = function(username, fileName, callback) {
     ], callback);
 };
 
+schema.statics.renameFile = function(username, newFileName, oldFileName, callback){
+    var File = this;
+    async.waterfall([
+        function(callback) {
+            File.findOne({username: username, fileName: oldFileName}, callback);
+        },
+        function(file, callback) {
+            if (file){
+                var newFile = new File({username: username, fileName: newFileName, fileText: file.fileText});
+                File.remove(file, callback);
+                newFile.save(callback);
+            }
+        }
+    ], callback);
+};
+
+
 exports.File = mongoose.model('File', schema);
