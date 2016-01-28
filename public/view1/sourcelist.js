@@ -50,10 +50,10 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
         console.log('RENAME');
         var newName = window.prompt("Введите новое имя", file.stats.name);
         console.log(newName);
-        $http.post('/rename', {new: newName, old: file.stats.name}).then(function() {
-            console.log('RENAME PROM');
-            file.stats.name = newName;
-        });
+        console.log('RENAME PROM');
+
+        $http.post('/rename', {new: newName, old: file.stats.name});
+        file.stats.name = newName;
     };
 
 
