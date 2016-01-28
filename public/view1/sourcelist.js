@@ -4,10 +4,10 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
     return {
         restrict : "AE",
         template:
-        '<li>' + '<style> .selected { border: solid 6px #483D8B; }</style>' +
-            '<button ng-click="rename(file);"  class="btn btn-default btn-xs" style="padding-right: 10px">{{file.stats.name}}</button><br>'+
+        '<li>' + '<style> .selected { opacity : 0.7 ; }</style>' +
+            '<button ng-click="rename(file);"  class="btn btn-default btn-xs" style="margin: 10px 5px 0px 10px">{{file.stats.name}}</button><br>'+
             '<span>' +
-                '<img height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<img  style="margin: 0px 0px 10px 10px" height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
                 '<button ng-click="remove(file);"  class="btn btn-default btn-xs btn-danger">X</button>' +
             '</span>' +
         '</li>',
