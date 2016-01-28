@@ -354,6 +354,7 @@ function enable_text_box(name){
     elm.style.backgroundColor = '';
 }
 
+
 function disable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = true;
