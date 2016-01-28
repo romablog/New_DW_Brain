@@ -182,8 +182,10 @@ function bf_stop_run(){
 }
 
 function bf_run_done(){
+    if (g_running) {
+        set_viewdata('outputview', g_output);
+    }
     bf_stop_run();
-    set_viewdata('outputview',g_output);
 }
 
 function bf_run_step(){
@@ -191,7 +193,7 @@ function bf_run_step(){
     execute_opcode(op);
     g_ip++;
 
-    if (g_ip >= g_program.length){
+    if (g_ip >= g_program.length || !g_running){
         bf_run_done();
         return;
     }
