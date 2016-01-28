@@ -16,55 +16,59 @@
 <script src="/view1/sourcelist.js"></script>
 <script src="view1/drop-directive.js"></script>
 
-
 <div id="page">
     <form name="mainform" id="mainform">
         <table cellspacing="20" cellpadding="0" border="0" align="center" style="margin-top: 50px">
             <tr>
                 <td colspan="3" align="center">
-                    <input style="margin-right: 30px" type="button" ng-click="" value="Run" onclick="run(this.form);" id="button_run" class="btn-default">
-                    <input style="margin-right: 30px" type="button" ng-click=""  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default">
-                    <input style="margin-right: 30px" type="button" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default">
-                    <input style="margin-right: 30px" type="button" value="Save" ng-click="save()" id="button_save" class="btn-default">
-                    <input style="margin-right: 30px" type="button"  value="New" ng-click="new()" id="button_save" class="btn-default">
-                    <hr>
+                    <nav class="navbar navbar-default" style="min-width: 800px; max-height: 10px; border: solid 2px black">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <input style="border-right: solid 2px black; border-left: solid 2px black" type="button"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
+                                    </li>
+                                    <li style="padding-right: 20px">
+                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                    </li>
+                                    <li>
+                                        <input style="border-right: solid 2px black; border-left: solid 2px black" type="button" ng-click="" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                    </li>
+                                    <li>
+                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                    </li>
+                                    <li>
+                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                    </li>
+                                    <li>
+                                        <input style="border-right: solid 2px black" type="button" ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </td>
             </tr>
             <tr>
                 <td rowspan="2" valign="top" drop-directive>
-                    <p>Program:</p>
-                    <select onchange="this.form.source.value=this.options[this.selectedIndex].value; this.selectedIndex=0;" id="edit_progs">
-                        <option value="">Example programs...</option>
-                        <option value="++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.">Hello World</option>
-                        <option value=",[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>>+++++[<----->-]<<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>>+++++[<----->-]<<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>++++++++++++++<-[>+<-]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]>.[-]<,]">Rot 13 (slow!)</option>
-                        <option value="+++++++++++>+>>>>++++++++++++++++++++++++++++++++++++++++++++>++++++++++++++++++++++++++++++++<<<<<<[>[>>>>>>+>+<<<<<<<-]>>>>>>>[<<<<<<<+>>>>>>>-]<[>++++++++++[-<-[>>+>+<<<-]>>>[<<<+>>>-]+<[>[-]<[-]]>[<<[>>>+<<<-]>>[-]]<<]>>>[>>+>+<<<-]>>>[<<<+>>>-]+<[>[-]<[-]]>[<<+>>[-]]<<<<<<<]>>>>>[++++++++++++++++++++++++++++++++++++++++++++++++.[-]]++++++++++<[->-<]>++++++++++++++++++++++++++++++++++++++++++++++++.[-]<<<<<<<<<<<<[>>>+>+<<<<-]>>>>[<<<<+>>>>-]<-[>>.>.<<<[-]]<<[>>+>+<<<-]>>>[<<<+>>>-]<<[<+>-]>[<+>-]<<<-]">Fibonacci Numbers</option>
-                        <option value="++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#++++++++++++++++++++#-.--.+++++++++++.">Breakpoints Demo</option>
-                    </select><br><br>
-                    <p>Drop</p>
-                    <div ng-controller="SourceFileListController" style="width: 100px; max-height: 300px; overflow: auto;">
+                    <p>Files:</p>
+                    <div ng-controller="SourceFileListController" style="width: 150px; max-height: 300px; min-height: 396px; overflow: auto; border: rgba(93, 131, 165, 1) 2px solid">
                         <div ng-repeat="file in sourceFiles">
                             <sourcefiles-directive></sourcefiles-directive>
                         </div>
                     </div>
                 </td>
-                <td style="min-width: 805px; padding-left: 30px; padding-right: 30px" valign="top" >
-                    <textarea cols="120" rows="11" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
-                    Source Viewer:<br>
-                    <pre class="viewer" style="height: 80px" id="progview"> </pre><br>
+                <td style="min-width: 780px; padding-left: 30px; padding-right: 30px" valign="top" >
+                    <textarea cols="117" rows="17" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br><br>
                     Output:<br>
-                    <pre id="edit_output" name="output" class="editsmall"> </pre><br>
-                    Output Viewer:<br>
-                    <pre class="viewer" id="outputview"> </pre>
-                    <br>
+                    <pre class="viewer" id="outputview" style="height: 90px"> </pre>
                 </td>
-                <td rowspan="2" valign="top" style="max-height:300px">
-                    <style>.inuse {border: solid red 5px}</style>
-                    <div  style="max-height:300px" infinite-scroll="loadMore()" class="scroll">
-                        <input size="10" disabled="true" type="text" ng-value="getInstruction()">
+                <td rowspan="2" valign="top">
+                    <style>.inuse {background: rgba(93, 131, 165, 1) }</style>
+                    <div infinite-scroll="loadMore()" class="scroll" style="min-height: 423px">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input size="10" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input style="max-width: 20px" ng-class="{inuse: getMemory() == $index}" type="text" ng-model="memory[$index]">
+                            <input style="max-width: 60px" ng-class="{inuse: getMemory() == $index}" type="text" ng-model="memory[$index]">
                             <input style="margin-right: 10px" size="2" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
@@ -73,7 +77,6 @@
             <tr valign="top">
                 <td>
                     <b>Note:</b> The hash ("#") character marks a breakpoint.
-
                 </td>
             </tr>
         </table>

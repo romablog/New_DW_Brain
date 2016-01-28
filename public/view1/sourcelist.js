@@ -5,11 +5,10 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
         restrict : "AE",
         template:
         '<li>' + '<style> .selected { border: solid 6px #483D8B; }</style>' +
-            '<h6>{{file.stats.name}}</h6>' +
+            '<button ng-click="rename(file);"  class="btn btn-default btn-xs" style="padding-right: 10px">{{file.stats.name}}</button><br>'+
             '<span>' +
-                '<img height="50px" width="50px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
-                '<button ng-click="rename(file);" width="20"class="btn btn-default">Имя</button>' +
-                '<button ng-click="remove(file);" width="20"class="btn btn-default">X</button>' +
+                '<img height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
+                '<button ng-click="remove(file);"  class="btn btn-default btn-xs btn-danger">X</button>' +
             '</span>' +
         '</li>',
 
