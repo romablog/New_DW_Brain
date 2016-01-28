@@ -47,8 +47,8 @@
                         </div>
                     </div>
                 </td>
-                <td style="min-width: 835px; padding-left: 30px; padding-right: 30px" valign="top" >
-                    <textarea cols="125" rows="11" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
+                <td style="min-width: 805px; padding-left: 30px; padding-right: 30px" valign="top" >
+                    <textarea cols="120" rows="11" id="edit_source" name="source" wrap="virtual" class="edit" ng-model="file.text"></textarea><br>
                     Source Viewer:<br>
                     <pre class="viewer" style="height: 80px" id="progview"> </pre><br>
                     Output:<br>
@@ -61,7 +61,7 @@
                     <div  style="max-height:300px" infinite-scroll="loadMore()" class="scroll">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input size="10" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input style="max-width: 40px" type="number" ng-model="memory[$index]">
+                            <input style="max-width: 50px" type="number" ng-model="memory[$index]">
                             <input style="margin-right: 10px" size="2" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
