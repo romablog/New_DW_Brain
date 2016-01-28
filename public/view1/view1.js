@@ -9,11 +9,21 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
     $scope.isAtInstruction = function(i) {
         return i == g_ip;
     };
+    $scope.is_debug = false;
+
+    $scope.setInterval = function(interval) {
+        g_timeout = interval;
+    };
+    $scope.getInterval = function() {
+        return g_timeout;
+    };
     $scope.getInstruction = function() {return g_ip};
     $scope.getMemory = function() {return g_mp};
     $scope.$watch(function() {return g_ip}, function(n) {
-        $('#edit_source')[0].selectionStart = n-1;
-        $('#edit_source')[0].selectionEnd = n;
+        if ($scope.is_debug) {
+            $('#edit_source')[0].selectionStart = n - 1;
+            $('#edit_source')[0].selectionEnd = n;
+        }
     });
     $scope.memory = g_memory;
     $scope.new = function() {

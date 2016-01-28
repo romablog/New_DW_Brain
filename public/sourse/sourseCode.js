@@ -15,6 +15,7 @@ var g_debugging_running = 0;
 var g_prompt_for_input = 0;
 var g_running = 0;
 var g_linebreaker = "\n";
+var g_timeout = 0;
 
 function init(){
     if (navigator.userAgent.toLowerCase().indexOf("msie") != -1){
@@ -197,7 +198,7 @@ function bf_run_step(){
         bf_run_done();
         return;
     }
-    window.setTimeout('bf_run_step();', 2);
+    window.setTimeout('bf_run_step();', g_timeout);
 }
 
 function pad_num(a, b){
