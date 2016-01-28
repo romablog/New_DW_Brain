@@ -156,9 +156,11 @@ function execute_opcode(op){
 function bf_interpret(prog){
 
     if (g_running){
+        console.log("hello stop");
         bf_stop_run();
         return;
     }
+    console.log("hello start");
     g_running = 1;
     init_prog(prog);
     init_memory();
@@ -172,8 +174,8 @@ function bf_interpret(prog){
 }
 
 function bf_stop_run(){
-    enable_text_box('edit_source');
-    enable_text_box('edit_progs');
+    //enable_text_box('edit_source');
+    //enable_text_box('edit_progs');
     enable_button('button_debug');
     change_button_caption('button_run', 'Run');
     g_running = 0;
@@ -186,7 +188,6 @@ function bf_run_done(){
 
 function bf_run_step(){
     var op = g_program[g_ip];
-
     execute_opcode(op);
     g_ip++;
 
@@ -194,7 +195,6 @@ function bf_run_step(){
         bf_run_done();
         return;
     }
-
     window.setTimeout('bf_run_step();', 2);
 }
 
