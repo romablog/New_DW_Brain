@@ -30,7 +30,7 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
         var date = new Date();
         var newFile = {
             stats: {
-                name: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+                name: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
             },
             text : ''
         };
