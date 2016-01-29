@@ -175,9 +175,8 @@ function bf_interpret(prog){
     set_viewdata('outputview', ' ');
     document.getElementById('edit_source').disabled = true;
     disable_button('button_debug');
-    change_button_caption('button_run', 'Stop');
+    //change_button_caption('button_run', 'Stop');
     document.getElementById('button_run').src = "sourse/player_stop.png";
-
     bf_run_step();
 }
 
