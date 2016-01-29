@@ -20,8 +20,8 @@ module.exports = function(app) {
 
   app.post('/files', require('./files').post);
   app.get('/files', require('./files').get);
-  app.delete('/files', require('./files').delete);
 
+  app.post('/delete', require('./delete').post);
   app.post('/rename', require('./rename').post);
 
   app.get('/brain', checkAuth,require('./brain').get);
