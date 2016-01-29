@@ -39,13 +39,18 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
     };
 
     $scope.remove = function() {
+        if ($scope.selected == Number.MAX_VALUE)
+            return;
         var file = SourceService.file;
+
+
         console.log('REMOVE', file, file.stats);
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);
         if ($scope.sourceFiles.length == 0) {
             console.log('LIST IS EMPTY');
         }
         $scope.delete(file);
+        $scope.selected = Number.MAX_VALUE;
     };
 
     $scope.rename = function() {
