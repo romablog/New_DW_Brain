@@ -15,12 +15,12 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
         link: function(scope, elem) {
 
             scope.select = function(file) {
-                console.log('before SELECT', SourceService.file);
+                console.log('before SELECT', SourceService.file, SourceService.file.stats);
                 SourceService.file = file;
 
                 $('#edit_source').val(SourceService.file.text);
               //  $('#edit_source').text('1');
-                console.log('after SELECT', SourceService.file);
+                console.log('after SELECT', SourceService.file, SourceService.file.stats);
                // $('#edit_source').value = SourceService.file.text;
             };
 
@@ -40,6 +40,7 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
 
     $scope.remove = function() {
         var file = SourceService.file;
+        console.log('REMOVE', file, file.stats);
         $scope.sourceFiles.splice($scope.sourceFiles.indexOf(file), 1);
         if ($scope.sourceFiles.length == 0) {
             console.log('LIST IS EMPTY');

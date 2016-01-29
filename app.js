@@ -22,6 +22,7 @@ if (app.get('env') == 'development') {
     app.use(express.logger('default'));
 }
 
+//app.use(express.bodyParser());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(express.cookieParser());

@@ -55,7 +55,7 @@ schema.statics.deleteFile = function(username, fileName, callback) {
     var File = this;
     async.waterfall([
         function(callback) {
-            File.findOne({username: username}, callback);
+            File.findOne({username: username, fileName: fileName}, callback);
         },
         function(file, callback) {
             if (file)
