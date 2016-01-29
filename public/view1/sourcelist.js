@@ -61,11 +61,11 @@ v1.controller("SourceFileListController", function($http, $scope, SourceService)
             console.log(newName);
             console.log('RENAME PROM');
 
-            $http.post('/rename', {new: newName, old: file.stats.name}.then(function(){
+            $http.post('/rename', {new: newName, old: file.stats.name}).then(function(){
                 file.stats.name = newName;
             },function() {
-                console.log('RENAME MEAN THINGS');
-            }));
+                alert("File already exists!");
+            });
 
         }
     };

@@ -19,8 +19,7 @@ var schema = new Schema({
         required: true
     },
     fileText: {
-        type: String,
-   //     required: true
+        type: String
     }
 });
 
@@ -44,10 +43,10 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
     var File = this;
     async.waterfall([
         function(callback) {
-            File.findOne({username: username, fileName: fileName}, callback);
+            File.findOne({id: username+fileName}, callback);
         },
         function(file, callback) {
-                if (file) {
+            if (file) {
                 File.remove(file, callback);
             }
             var newFile = new File({id: username+fileName, username: username, fileName: fileName, fileText: fileText});
@@ -60,8 +59,7 @@ schema.statics.deleteFile = function(username, fileName, callback) {
     var File = this;
     async.waterfall([
         function(callback) {
-            console.log({username: username, fileName: fileName});
-            File.findOne({username: username, fileName: fileName}, callback);
+            File.findOne({id: username+fileName}, callback);
         },
         function(file, callback) {
             if (file)
@@ -74,14 +72,19 @@ schema.statics.renameFile = function(username, newFileName, oldFileName, callbac
     var File = this;
     async.waterfall([
         function(callback) {
-            File.findOne({username: username, fileName: oldFileName}, callback);
+            File.findOne({id:username+newFileName}, callback);
         },
         function(file, callback) {
-            if (file){
-                var newFile = new File({username: username, fileName: newFileName, fileText: file.fileText});
-                File.remove(file, callback);
-                newFile.save(callback);
+            if (file) {
+                callback("error");
+                return;
             }
+            File.findOne({id:username+oldFileName}, callback);
+        },
+        function(file, callback) {
+            var newFile = new File({id:username+newFileName, username: username, fileName: newFileName, fileText: file.fileText});
+            File.remove(file, callback);
+            newFile.save(callback);
         }
     ], callback);
 };
