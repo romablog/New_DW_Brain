@@ -47,8 +47,8 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
     };
 
     $scope.delete = function(file) {
-        console.log('DELETE', file, file.stats);
-        $http.delete('/files', {fileName: file.stats.name, fileText: file.text});
+        console.log('DELETE', file.stats.name, file.text);
+        $http.post('/delete', {fileName: file.stats.name, fileText: file.text});
     };
 
 
