@@ -367,7 +367,7 @@ function enable_text_box(name){
 function disable_button(name){
     var elm = document.getElementById(name);
     elm.disabled = true;
-    elm.style.opacity = 0.2;
+    elm.style.opacity = 0.3;
 }
 
 function enable_button(name){
