@@ -3,6 +3,7 @@
 var v1 = angular.module('brainApp.view1',[
     'infinite-scroll']);
 
+
 v1.controller('View1Controller', function($http, $interval, $scope, SourceService) {
     console.log("Controller scope", SourceService.sourceFiles);
    // $scope.file = SourceService.file;

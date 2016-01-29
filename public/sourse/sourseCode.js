@@ -185,6 +185,7 @@ function bf_stop_run(){
     //enable_text_box('edit_progs');
     enable_button('button_debug');
     change_button_caption('button_run', 'Run');
+    document.getElementById('edit_source').disabled = false;
     document.getElementById('button_run').src = "sourse/player_play%20(1).png";
     g_running = 0;
 }

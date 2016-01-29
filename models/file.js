@@ -5,6 +5,11 @@ var mongoose = require('../libs/mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     username: {
         type: String,
         required: true
@@ -45,7 +50,7 @@ schema.statics.addFile = function(username, fileName, fileText, callback) {
                 if (file) {
                 File.remove(file, callback);
             }
-            var newFile = new File({username: username, fileName: fileName, fileText: fileText});
+            var newFile = new File({id: username+fileName, username: username, fileName: fileName, fileText: fileText});
             newFile.save(callback);
         }
     ], callback);
