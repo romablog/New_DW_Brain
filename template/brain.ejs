@@ -23,16 +23,16 @@
                     <div class="container-fluid" style="border: solid lightgray 1px">
                         <ul class="nav navbar-nav">
                             <li>
-                                <input style="margin-right: 5px; margin-left: 110px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_play%20(1).png" height="35px" width="46px"  ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Run programm" style="margin-right: 5px; margin-left: 110px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_play%20(1).png" height="35px" width="46px"  ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                             <li>
-                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_rewind.png" height="35px" width="46px"  ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Enter debug mode" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_rewind.png" height="35px" width="46px"  ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                             <li>
-                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/direction_right.png" height="35px" width="46px"  ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Step in" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/direction_right.png" height="35px" width="46px"  ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                             <li>
-                                <input style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/Arrow%20(1).png" height="35px" width="46px"  ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Run to breakpoint" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/Arrow%20(1).png" height="35px" width="46px"  ng-click=""  value="Run To Breakpoint" onclick="run_debug();" disabled id="button_run_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                         </ul>
                     </div>
@@ -49,13 +49,13 @@
                     <div style="width: 120px;" >
                         <ul class="nav navbar-nav">
                             <li>
-                                <input style=" background: rgba(253, 253, 254, 1);" type="image" src="sourse/file_add.png" height="27px" width="37px"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
+                                <input title="Create new file" style=" background: rgba(253, 253, 254, 1);" type="image" src="sourse/file_add.png" height="27px" width="37px"  value="New" ng-click="new()" id="button_save" class="btn-default btn-sm">
                             </li>
                             <li>
-                                <input style=" background: rgba(253, 253, 254, 1);"  type="image" src="sourse/file_delete.png" height="27px" width="37px"  value="Del" ng-click="remove()" id="button_save" class="btn-default btn-sm">
+                                <input title="Delete file" style=" background: rgba(253, 253, 254, 1);"  type="image" src="sourse/file_delete.png" height="27px" width="37px"  value="Del" ng-click="remove()" id="button_save" class="btn-default btn-sm">
                             </li>
                             <li>
-                                <input style=" background: rgba(253, 253, 254, 1);"  type="image" src="sourse/diskette.png" height="27px" width="37px"  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Save file" style=" background: rgba(253, 253, 254, 1);"  type="image" src="sourse/diskette.png" height="27px" width="37px"  value="Save" ng-click="save()" id="button_save" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                         </ul>
                     </div>

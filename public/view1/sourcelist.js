@@ -5,7 +5,7 @@ v1.directive("sourcefilesDirective", ['$http', 'SourceService', function($http, 
         restrict : "AE",
         template:
         '<li>' + '<style> .selected, .selected:focus { color: blue; } </style>' +
-            '<button ng-class="{selected : isSelected($index)}"  ng-dblclick="rename(file)" ng-click="selectFile($index);select(file);" ng-disabled="is_debug" class="btn btn-default btn-xs" style="margin: 10px 5px 0px 10px">{{file.stats.name}}</button><br>'+
+            '<button ng-class="{selected : isSelected($index)}"  ng-dblclick="rename(file)" ng-click="selectFile($index);select(file);" ng-disabled="is_debug" class="btn btn-default btn-xs" style="margin: 10px 5px 0px 10px; width: 85px; height: 20px;">{{file.stats.name}}</button><br>'+
             '<span>' +
             //    '<img  style="margin: 0px 0px 10px 10px" height="40px" width="40px" ng-class="{selected : isSelected($index)}" ng-src="http://www.thecompliancecenter.com/img-prod/labels/fullsize-images/pictograms/flammable_lg1.jpg" ng-click="selectFile($index);select(file)" style="max-width: 220px; max-height: 100px;"/>' +
                 //'<button ng-click="rename(file);"  ng-disabled="is_debug" class="btn btn-default btn-xs btn-danger">ren</button>' +
