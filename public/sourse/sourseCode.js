@@ -165,7 +165,6 @@ function bf_interpret(prog){
         bf_stop_run();
         return;
     }
-    console.log("hello start");
     g_running = 1;
     init_prog(prog);
     init_memory();
