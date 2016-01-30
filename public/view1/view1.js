@@ -6,7 +6,6 @@ var v1 = angular.module('brainApp.view1',[
 
 v1.controller('View1Controller', function($http, $interval, $scope, SourceService) {
     console.log("Controller scope", SourceService.sourceFiles);
-   // $scope.file = SourceService.file;
     $scope.isAtInstruction = function(i) {
         return i == g_ip;
     };
