@@ -52,7 +52,10 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
         $http.post('/delete', {fileName: file.stats.name, fileText: file.text});
     };
 
-
+    $scope.positive = function() {
+        $('#mem').val(Math.abs($('#mem').val()));
+        if ($('#mem').val().charAt(0) == '-') $('#mem').val(0);
+    };
     console.log("Controller scope", SourceService.sourceFiles[0]);
     $scope.loadMore = load;
     $scope.lines = lines;

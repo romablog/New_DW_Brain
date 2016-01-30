@@ -42,7 +42,7 @@
                 <td rowspan="1" valign="top" drop-directive style="padding-right: 2px">
                     <b>Files:</b>
                     <div  style="width: 89%; height: 406px; overflow: auto; border: lightgray 1px solid">
-                        <div ng-repeat="file in sourceFiles track by file.stats.name">
+                        <div ng-repeat="file in sourceFiles">
                             <sourcefiles-directive></sourcefiles-directive>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div infinite-scroll="loadMore()" class="scroll" style="min-height: 406px; max-width: 165px">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input style="border: hidden; background: white" size="4" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input type="number" min="0" style="max-width: 40px; border: hidden" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
+                            <input type="number" min="0" style="max-width: 40px; border: hidden" id="mem" onfocusout="if(value < 0 || value > 255) value = 0;" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
                             <input style="border: hidden; background: white" size="1" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
