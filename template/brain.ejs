@@ -27,7 +27,7 @@
                                 <input title="Run programm" style="margin-right: 5px; margin-left: 110px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_play%20(1).png" height="35px" width="46px"  ng-click="is_debug = false; setTimeout(0)" value="Run" onclick="run(this.form);" id="button_run" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                             <li>
-                                <input title="Enter debug mode" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_rewind.png" height="35px" width="46px"  ng-click="is_debug =!is_debug; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
+                                <input title="Enter debug mode" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/player_rewind.png" height="35px" width="46px"  ng-click="is_debug = true; setTimeout(80)"  value="Start Debugger" onclick="debug_toggle(this.form);" id="button_debug" class="btn-default btn-sm"><span class="sr-only">(current)</span>
                             </li>
                             <li>
                                 <input title="Step in" style="margin-right: 5px; background: rgba(253, 253, 254, 1)" type="image" src="sourse/direction_right.png" height="35px" width="46px"  ng-click=""  value="Single Step" onclick="run_step();" disabled id="button_step" class="btn-default btn-sm"><span class="sr-only">(current)</span>
@@ -73,7 +73,7 @@
                     <div infinite-scroll="loadMore()" class="scroll" style="min-height: 406px; max-width: 165px">
                         <div ng-repeat="line in lines" class="viewer">
                            <p><input style="border: hidden; background: white" size="4" disabled="true" type="text" ng-value="'0x'+ $index.toString(16)">
-                            <input type="number" min="0" style="max-width: 40px; border: hidden" id="mem" onfocusout="if(value < 0 || value > 255) value = 0;" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
+                            <input type="number" min="0" style="max-width: 40px; border: hidden" id="mem" onfocusout="if(value < 0 || value > 255 || value.length == 0) value = 0;" ng-class="{inuse: is_debug && getMemory() == $index}" type="text" ng-model="memory[$index]">
                             <input style="border: hidden; background: white" size="1" disabled="true" ng-value="tochar(memory[$index])"></p>
                         </div>
                     </div>
