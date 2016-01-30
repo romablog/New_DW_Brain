@@ -101,6 +101,9 @@ function get_input(){
             answer = eval(data);
         } catch (err) {
             answer = data.charCodeAt(0);
+            if (answer > 255) {
+                answer = get_input();
+            }
         }
         return answer;
     }
@@ -159,7 +162,6 @@ function execute_opcode(op){
 function bf_interpret(prog){
 
     if (g_running){
-        console.log("hello stop");
         bf_stop_run();
         return;
     }
