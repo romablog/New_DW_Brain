@@ -89,5 +89,4 @@ schema.statics.renameFile = function(username, newFileName, oldFileName, callbac
     ], callback);
 };
 
-
 exports.File = mongoose.model('File', schema);
