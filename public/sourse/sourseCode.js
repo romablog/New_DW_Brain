@@ -81,17 +81,29 @@ function init_input(){
     g_dp = 0;
 }
 
+function checkEmpty(data){
+    while ((!data)){
+        if (data == null){
+            if (g_running==1){
+                bf_stop_run();
+            } else debug_done();
+            return 0;
+        } else data = window.prompt("Enter again");
+    }
+    return 1;
+}
+
 function get_input(){
     var data = window.prompt("Enter an input character:", "");
-    if ((data == null) || (!data))
-        return 0;
-    var answer = 0;
-    try {
-        answer = eval(data);
-    } catch (err) {
-        answer = data.charCodeAt(0);
+    if (checkEmpty(data)){
+        var answer = 0;
+        try {
+            answer = eval(data);
+        } catch (err) {
+            answer = data.charCodeAt(0);
+        }
+        return answer;
     }
-    return answer;
 }
 
 function is_valid_op(op){
