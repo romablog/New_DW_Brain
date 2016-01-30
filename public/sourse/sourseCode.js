@@ -9,7 +9,6 @@ var g_program = new Array();
 var g_targets = new Array();
 var g_input = new Array();
 var g_output = '';
-var g_viewer_width = 63;
 var g_quit_debug_run = 0;
 var g_debugging_running = 0;
 var g_prompt_for_input = 0;
@@ -21,7 +20,6 @@ function init(){
     if (navigator.userAgent.toLowerCase().indexOf("msie") != -1){
         g_linebreaker = "\r";
     }
-
     document.getElementById('edit_source').value = "";
     g_debugging = 1;
     init_memory();
@@ -76,7 +74,7 @@ function init_targets(){
 function init_input(){
     g_prompt_for_input = true;
     g_input.length = 0;
-    var in_data = "";//document.getElementById('edit_input').value;
+    var in_data = "";
     for(var i=0; i<in_data.length; i++){
         g_input[g_input.length] = in_data.charAt(i);
     }
@@ -84,29 +82,16 @@ function init_input(){
 }
 
 function get_input(){
-    if (g_prompt_for_input){
-        var data = window.prompt("Enter an input character (use #xxx to specify a decimal code, !xxx for an octal code, or $xxx for a hex code):", "#0");
-        if ((data == null) || (!data)) return 0; //return 'nodata'
-        if (data.charAt(0) == "'" || data.charAt(0) =='"')
-            return data.charAt(1);
-        else return eval(data);
-        /*
-        if (data.charAt(0) == '#'){
-            return parseInt(data.substr(1), 10);
-        }
-        if (data.charAt(0) == '!'){
-            return eval('0'+data.substr(1));
-        }
-        if (data.charAt(0) == '$'){
-            return eval('0x'+data.substr(1));
-        }
-        */
-        return data.charCodeAt(0);
-    }else{
-        var result = (g_dp >= g_input.length)?0:g_input[g_dp].charCodeAt(0);
-        g_dp++;
-        return result;
+    var data = window.prompt("Enter an input character:", "");
+    if ((data == null) || (!data))
+        return 0;
+    var answer = 0;
+    try {
+        answer = eval(data);
+    } catch (err) {
+        answer = data.charCodeAt(0);
     }
+    return answer;
 }
 
 function is_valid_op(op){
@@ -181,8 +166,6 @@ function bf_interpret(prog){
 }
 
 function bf_stop_run(){
-    //enable_text_box('edit_source');
-    //enable_text_box('edit_progs');
     enable_button('button_debug');
     change_button_caption('button_run', 'Run');
     document.getElementById('edit_source').disabled = false;
@@ -201,7 +184,6 @@ function bf_run_step(){
     var op = g_program[g_ip];
     execute_opcode(op);
     g_ip++;
-
     if (g_ip >= g_program.length || !g_running){
         bf_run_done();
         return;
@@ -215,35 +197,6 @@ function pad_num(a, b){
     return c;
 }
 
-function update_progview(){
-    var pre_slots = Math.floor(g_viewer_width / 2);
-    var low_slot = g_ip - pre_slots;
-
-    var line_1 = '';
-    for(var i=0; i<g_viewer_width; i++){
-        var slot = low_slot + i;
-        if ((slot >= 0) && (slot < g_program.length)){
-            line_1 += g_program[slot];
-        }else{
-            line_1 += '_';
-        }
-    }
-
-    var line_2 = '';
-    for(var i=0; i<pre_slots; i++){
-        line_2 += ' ';
-    }
-    line_2 += '^';
-
-    var line_3 = '';
-    for(var i=0; i<pre_slots; i++){
-        line_3 += ' ';
-    }
-    line_3 += 'ip='+g_ip;
-
-    set_viewdata('progview', line_1 + g_linebreaker + line_2 + g_linebreaker + line_3);
-}
-
 function update_outputview(){
     set_viewdata('outputview', g_output);
 }
@@ -255,7 +208,6 @@ function set_viewdata(view, data){
 }
 
 function run(f){
-    console.log(f.source.value);
     bf_interpret(f.source.value);
 }
 
@@ -269,21 +221,15 @@ function debug_toggle(f){
     if (g_debugging == 1){
         g_debugging = 0;
         document.getElementById('edit_source').disabled = false;
-        //enable_text_box('edit_progs');
         enable_button('button_run');
-        //change_button_caption('button_debug', 'Start Debugger');
         document.getElementById('button_debug').src = "sourse/player_rewind.png";
         disable_button('button_step');
         enable_button('button_debug');
         disable_button('button_run_debug');
-        //set_viewdata('progview', ' ');
-        //set_viewdata('outputview', ' ');
     }else{
         g_debugging = 1;
         document.getElementById('edit_source').disabled = true;
-        //disable_text_box('edit_progs');
         disable_button('button_run');
-        //change_button_caption('button_debug', 'Quit Debugger');
         document.getElementById('button_debug').src = "sourse/player_stop.png";
         enable_button('button_step');
         enable_button('button_run_debug');
@@ -297,7 +243,6 @@ function start_debugger(){
     init_io();
     init_prog(document.getElementById('edit_source').value);
     init_input();
-    //update_progview();
     update_outputview();
 }
 
@@ -305,7 +250,6 @@ function run_step(){
     var op = g_program[g_ip];
     execute_opcode(op);
     g_ip++;
-    //update_progview();
     update_outputview();
 
     if (g_ip >= g_program.length){
@@ -350,19 +294,6 @@ function run_debug_step(){
     }
     window.setTimeout('run_debug_step();', 0);
 }
-
-function disable_text_box(name){
-    var elm = document.getElementById(name);
-    elm.disabled = true;
-    elm.style.backgroundColor = '#cccccc';
-}
-
-function enable_text_box(name){
-    var elm = document.getElementById(name);
-    elm.disabled = false;
-    elm.style.backgroundColor = '';
-}
-
 
 function disable_button(name){
     var elm = document.getElementById(name);
