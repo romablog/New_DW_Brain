@@ -36,18 +36,18 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
         };
         SourceService.sourceFiles.push(newFile);
         SourceService.file = newFile;
-        console.log('SENDING', {fileName: SourceService.file.stats.name, fileText: SourceService.file.text});
         $http.post('/files', {fileName: SourceService.file.stats.name, fileText: SourceService.file.text});
     };
     $scope.save = function() {
-        console.log('Значение до записи', SourceService.file);
         SourceService.file.text = $('#edit_source').val();
-        console.log('Значение после записи', SourceService.file);
         $http.post('/files', {fileName: SourceService.file.stats.name, fileText: SourceService.file.text});
     };
 
+    $interval(function() {
+        $scope.save();
+    }, 15000);
+
     $scope.delete = function(file) {
-        console.log('DELETE', file.stats.name, file.text);
         $http.post('/delete', {fileName: file.stats.name, fileText: file.text});
     };
 
@@ -55,7 +55,6 @@ v1.controller('View1Controller', function($http, $interval, $scope, SourceServic
         $('#mem').val(Math.abs($('#mem').val()));
         if ($('#mem').val().charAt(0) == '-') $('#mem').val(0);
     };
-    console.log("Controller scope", SourceService.sourceFiles[0]);
     $scope.loadMore = load;
     $scope.lines = lines;
     $interval(function(){},100);

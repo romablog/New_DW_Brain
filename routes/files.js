@@ -2,7 +2,9 @@ var File = require('../models/file').File;
 
 exports.post = function(req, res, next){
     console.log(res.locals.user.username, req.body.fileName, req.body.fileText);
-    File.addFile(res.locals.user.username,req.body.fileName, req.body.fileText);
+    File.addFile(res.locals.user.username,req.body.fileName, req.body.fileText, function(){
+        res.send("OK");
+    });
 };
 
 
